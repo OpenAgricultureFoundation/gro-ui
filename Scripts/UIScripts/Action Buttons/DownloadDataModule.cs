@@ -4,10 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
 
-public class DownloadDataModule : MonoBehaviour {
+public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPointChoice> {
 
 	public GameObject sensingPointChoicePrefab;
 	public Transform sensingPointChoiceScrollPanel;
+	public InputField startDateInput, endDateInput;
+	private string saveFilePath;
+
+	private List<SensingPointChoice> selectedSensingPoints = new List<SensingPointChoice>();
 
 	public IEnumerator Initialize()
 	{
@@ -51,11 +55,81 @@ public class DownloadDataModule : MonoBehaviour {
 		}
 		//Debug.Log (sensingPoint["property"]["name"].Value);
 		GameObject choice = Instantiate(sensingPointChoicePrefab) as GameObject;
-		SensingPointChoice script = choice.GetComponent<SensingPointChoice>();
-		
 		choice.transform.SetParent(sensingPointChoiceScrollPanel, false);
+		
+		SensingPointChoice script = choice.GetComponent<SensingPointChoice>();
+		script.selectionReceiver = this;
+		script.SetName(sensingPoint["property"]["name"].Value);
+		
 	}
 	
+	public void MakeSelection(SensingPointChoice choice)
+	{
+		if(choice.selected){
+			selectedSensingPoints.Add(choice);
+		}
+		else{
+			selectedSensingPoints.Remove(choice);
+		}
+	}
+	
+	public bool ValidateInputs()
+	{
+		if(! (selectedSensingPoints.Count > 0))
+		{
+			return false;
+		}
+		System.DateTime dt1, dt2;
+		bool isValid1 = System.DateTime.TryParseExact(startDateInput.text, 
+				"MM/dd/yyyy", 
+				System.Globalization.CultureInfo.InvariantCulture, 
+				System.Globalization.DateTimeStyles.None, 
+				out dt1);
+		bool isValid2 = System.DateTime.TryParseExact(endDateInput.text, 
+				"MM/dd/yyyy", 
+				System.Globalization.CultureInfo.InvariantCulture, 
+				System.Globalization.DateTimeStyles.None, 
+				out dt2);
+		if(!(isValid1 && isValid2))
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public void DownloadButtonPress() 
+	{
+		if(ValidateInputs())
+		{
+			StartDownloadSequence();
+		}
+	}
+	
+	public void StartDownloadSequence()
+	{
+		UniFileBrowser.use.SaveFileWindow (SaveFileFunction);
+	}
+	
+	void SaveFileFunction(string path)
+	{
+		saveFilePath = path;
+		Debug.Log (saveFilePath);
+	}
+	
+	void GetData()
+	{
+		
+	}
+	
+	void SaveDataFile(string data)
+	{
+		
+	}
+	
+	private string FormatDataToCSV(string data)
+	{
+		return "";
+	}
 	public void CloseButtonPress() 
 	{
 		EndModule();
@@ -65,16 +139,6 @@ public class DownloadDataModule : MonoBehaviour {
 	{
 		ActionButtonManager.actionButtonManager.ModuleEnd ();
 		Destroy (transform.gameObject);
-	}
-	
-	public void DownloadButtonPress() 
-	{
-		
-	}
-	
-	private void FormatDataToCSV(string data)
-	{
-		
 	}
 	
 }

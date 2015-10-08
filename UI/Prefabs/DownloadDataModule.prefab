@@ -514,6 +514,8 @@ MonoBehaviour:
   sensingPointChoicePrefab: {fileID: 163844, guid: a8df25a9b4f8542d8b6bf36c2a2cf944,
     type: 2}
   sensingPointChoiceScrollPanel: {fileID: 22476166}
+  startDateInput: {fileID: 11452008}
+  endDateInput: {fileID: 11433984}
 --- !u!114 &11419040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,8 +645,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 11414892}
+        m_MethodName: DownloadButtonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1579,7 +1581,7 @@ Prefab:
       objectReference: {fileID: 11414892}
     - target: {fileID: 0}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseButtonPress
+      value: DownloadButtonPress
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
