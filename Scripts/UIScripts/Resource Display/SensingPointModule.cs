@@ -5,7 +5,8 @@ using SimpleJSON;
 
 public class SensingPointModule : MonoBehaviour {
 
-	[SerializeField] private static float _refreshTime = 1.0f;
+	[SerializeField] private static float _refreshTime = 2.0f;
+	private static int _thresholdForOldValues = 15*60;
 
 	public Text resourcePropertyDisplay, valueDisplay;
 
@@ -56,6 +57,9 @@ public class SensingPointModule : MonoBehaviour {
 			*/
 			else
 			{
+				/*
+				if(now - timestamp > threshold)
+				*/
 				dataPoint = JSON.Parse (www.text);
 				SetSensorReadingValue (dataPoint["value"].Value);
 			}

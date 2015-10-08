@@ -1,9 +1,7 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
 using SimpleJSON;
 
 public class FarmManager : MonoBehaviour {
@@ -27,6 +25,7 @@ public class FarmManager : MonoBehaviour {
 	public GameObject AddPlantModulePrefab;
 	public GameObject HarvestModulePrefab;
 	public GameObject AdjustSystemModulePrefab;
+	public GameObject DownloadDataModulePrefab; 
 
 	public List<PlantModelMapEntry> plantModelMap;
 	public GameObject defaultPlantModel;
@@ -179,6 +178,14 @@ public class FarmManager : MonoBehaviour {
 		AdjustSystemModule script = module.GetComponent<AdjustSystemModule> ();
 		script.activeFarmObject = activeObject.GetComponent<FarmObject> ();
 		script.StartCoroutine ("Initialize");
+	}
+	
+	public void StartDownloadDataModule()
+	{
+		GameObject module = Instantiate(DownloadDataModulePrefab) as GameObject;
+		module.transform.SetParent (GameObject.FindGameObjectWithTag ("GUICanvas").transform, false);
+		DownloadDataModule script = module.GetComponent<DownloadDataModule>();
+		script.StartCoroutine("Initialize");
 	}
 
 	public GameObject GetPlantModel(string plantType)

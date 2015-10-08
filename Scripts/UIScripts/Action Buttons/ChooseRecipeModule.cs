@@ -153,6 +153,8 @@ public class ChooseRecipeModule : MonoBehaviour, IReactivatable, ISelectionRecei
 
 		WWWForm form = new WWWForm ();
 		form.AddField ("end_timestamp", nowTimestamp);
+		form.AddField ("tray", activeTrayObject.node["url"].Value);
+		//form.AddField ("recipe", a);
 
 		object[] parms = new object[2] { currentRecipeURL, form };
 
