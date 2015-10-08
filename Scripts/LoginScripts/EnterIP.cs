@@ -2,11 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class EnterIP : MonoBehaviour {
 
 	public InputField ipAddressInput;
 	public Button AttemptButton;
 
+
+	void Start(){
+		ipAddressInput.ActivateInputField ();
+	}
 	public void ValidateIP()
 	{
 		string ip = ipAddressInput.text;
@@ -25,7 +30,13 @@ public class EnterIP : MonoBehaviour {
 			AttemptButton.interactable = false;
 		}
 	}
-	
+
+	void Update(){
+		if (Input.GetKeyDown("return")){
+			AttemptButtonPress ();
+		}
+	}
+
 	public void AttemptButtonPress()
 	{
 		LoginManager.loginManager.StartCoroutine("ValidateIP", ipAddressInput.text);
