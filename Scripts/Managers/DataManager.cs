@@ -203,6 +203,8 @@ public class DataManager : MonoBehaviour {
 		}
 		yield return null;
 	}
+	
+	
 
 	public void DataDownload(Dictionary<string, string> sensingPoints, int startTime, int endTime, string filePath)
 	{

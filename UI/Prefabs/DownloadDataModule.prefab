@@ -44,6 +44,7 @@ GameObject:
   - 114: {fileID: 11471980}
   - 114: {fileID: 11449180}
   - 114: {fileID: 11414892}
+  - 114: {fileID: 11402116}
   m_Layer: 5
   m_Name: DownloadDataModule
   m_TagString: Untagged
@@ -354,6 +355,69 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11402116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca83b61c7b372424181a43e472f57b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filterFiles: 0
+  filterFileExtensions: []
+  autoAddExtension: 0
+  addedExtension: 
+  useFilterButton: 0
+  useDeleteButton: 0
+  defaultFileName: 
+  maxFileNameLength: 32
+  limitToInitialFolder: 0
+  showVolumes: 0
+  volumesAreSeparate: 0
+  showDate: 0
+  dateWidthAdd: 8
+  sortType: 0
+  m_allowMultiSelect: 0
+  allowAppBundleBrowsing: 0
+  showHiddenOSXFiles: 0
+  preventIllegalCharInput: 1
+  illegalChars: \/|:<>?"+[]
+  allowWindowResize: 1
+  allowWindowDrag: 1
+  fileWindowID: 50
+  messageWindowID: 51
+  doubleClickTime: .5
+  fileWindowInset: 25
+  defaultFileWindowRect:
+    serializedVersion: 2
+    x: 100
+    y: 100
+    width: 400
+    height: 400
+  minWindowWidth: 435
+  minWindowHeight: 300
+  messageWindowSize: {x: 400, y: 160}
+  popupRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 300
+    height: 33
+  buttonSize: {x: 72, y: 35}
+  windowTabOffset: {x: 0, y: 3}
+  guiDepth: -1
+  guiSkin: {fileID: 11400000, guid: 437d14becad2449819a39ae743d8cb5a, type: 2}
+  highlightTexture: {fileID: 2800000, guid: 4ee9864d13ddd40a8b3bcafb5c75be6d, type: 3}
+  highlightTextColor: {r: 0, g: 0, b: 0, a: 1}
+  windowTab: {fileID: 2800000, guid: af702ba2a5f4048ad9bd6f60b5a6909c, type: 3}
+  messageWindowTexture: {fileID: 2800000, guid: 4767637e9ea4b44da8648130624fe1e7,
+    type: 3}
+  driveIcon: {fileID: 2800000, guid: 5253a30876fb9444199d71e8f288385d, type: 3}
+  folderIcon: {fileID: 2800000, guid: 87c12970698a14a46b844b023ef3ab94, type: 3}
+  fileIcon: {fileID: 2800000, guid: 5d92a318bda704d1993660628c2b4819, type: 3}
 --- !u!114 &11402296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1591,6 +1655,22 @@ Prefab:
       propertyPath: sensingPointChoicePrefab
       value: 
       objectReference: {fileID: 163844, guid: a8df25a9b4f8542d8b6bf36c2a2cf944, type: 2}
+    - target: {fileID: 0}
+      propertyPath: defaultFileWindowRect.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: defaultFileWindowRect.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: defaultFileWindowRect.width
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: defaultFileWindowRect.height
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121558}

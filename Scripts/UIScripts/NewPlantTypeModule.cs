@@ -19,7 +19,7 @@ public class NewPlantTypeModule : MonoBehaviour {
 		form.AddField ("common_name", commonName);
 		form.AddField ("latin_name", latinName);
 		form.AddField ("plant_size", "short-leafy");
-		form.AddField ("model", "http://" + DataManager.dataManager.ipAddress + "/plantModel/1/");
+		//form.AddField ("model", "http://" + DataManager.dataManager.ipAddress + "/plantModel/1/");
 		print (DataManager.dataManager.ipAddress);
 
 		string url = string.Concat (plantTypeURL, "/");
