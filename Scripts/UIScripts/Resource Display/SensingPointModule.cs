@@ -5,7 +5,7 @@ using SimpleJSON;
 
 public class SensingPointModule : MonoBehaviour {
 
-	[SerializeField] private static float _refreshTime = 2.0f;
+	[SerializeField] private static float _refreshTime = 4.20f;
 	private static int _thresholdForOldValues = 15*60;
 
 	public Text resourcePropertyDisplay, valueDisplay;

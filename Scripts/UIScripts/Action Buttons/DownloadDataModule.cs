@@ -8,7 +8,7 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 
 	public GameObject sensingPointChoicePrefab;
 	public Transform sensingPointChoiceScrollPanel;
-	public InputField startDateInput, endDateInput;
+	public InputField startDateInput, endDateInput, startTimeInput, endTimeInput;
 	private string saveFilePath, folderName;
 	private System.DateTime startTime, endTime;
 	
@@ -94,10 +94,27 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 				System.Globalization.CultureInfo.InvariantCulture, 
 				System.Globalization.DateTimeStyles.None, 
 				out endTime);
+		
 		if(!(isValid1 && isValid2))
 		{
 			return false;
 		}
+		if(!string.IsNullOrEmpty(startTimeInput.text))
+		{
+			System.TimeSpan time = System.TimeSpan.Parse(startTimeInput.text);
+			startTime = startTime.Add(time);
+			//Debug.Log(startTime);
+		}
+		if(!(string.IsNullOrEmpty(endTimeInput.text)))
+		{
+			System.TimeSpan time = System.TimeSpan.Parse(endTimeInput.text);
+			endTime = endTime.Add(time);
+		}
+		
+		System.TimeSpan timezoneOffset = System.DateTime.UtcNow - System.DateTime.Now;
+		startTime = startTime.Add(timezoneOffset);
+		endTime = endTime.Add(timezoneOffset);
+		
 		return true;
 	}
 	
@@ -172,10 +189,11 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 		bool next = true;
 		Dictionary<string, string> sensingPointData = new Dictionary<string, string>();
 		int pageCount = 1;
+		int numPoints = 0;
 		
 		while (next) 
 		{
-			Debug.Log("Page number " + pageCount);
+			//Debug.Log("Page number " + pageCount);
 			JSONNode node = JSON.Parse(www.text);
 			JSONArray dataPoints = node["results"].AsArray;
 			foreach(JSONNode point in dataPoints)
@@ -183,6 +201,7 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 				int time = point["timestamp"].AsInt;
 				float value = point["value"].AsFloat;//.ToString();
 				sensingPointData[time.ToString()] = value.ToString();
+				numPoints+=1;
 			}
 			if(node["next"].Value == "null")
 			{
@@ -200,7 +219,8 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 				pageCount++;
 			}	
 		}
-		downloadedData.Add(choice, sensingPointData);
+		downloadedData[choice] = sensingPointData;
+		Debug.Log ("Number of points: " + numPoints);
 		
 		yield return null;
 	}
@@ -209,6 +229,7 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 	{
 		string path = saveFilePath + "/" + fileName;
 		System.IO.File.WriteAllText(path, data);
+		downloadedData = new Dictionary<SensingPointChoice, Dictionary<string, string>>();
 	}
 	
 	private string FormatDataToCSV(Dictionary<string, string> data)

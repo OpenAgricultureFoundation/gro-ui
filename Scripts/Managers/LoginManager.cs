@@ -109,8 +109,8 @@ public class LoginManager : MonoBehaviour {
 		WWWForm form = new WWWForm();
 		form.AddField("username", user);
 		form.AddField("password", pass);
-		
-		WWW login = new WWW(DataManager.dataManager.ipAddress + loginSuffix, form);
+		string loginURL = DataManager.dataManager.ipAddress + loginSuffix;
+		WWW login = new WWW(loginURL, form);
 		yield return login;
 		loadingPanel.SetActive(false);
 		if(!string.IsNullOrEmpty(login.error))
