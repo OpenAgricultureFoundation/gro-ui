@@ -1,0 +1,13 @@
+UniFileBrowser 2.0 changes the way that file open/save functions are handled, among other things, so that any code you've written for a previous version will need to be adapted. The list below shows pre-2.0 functions and their new equivalents.
+
+UniFileBrowser 1.6                                UniFileBrowser 2.0
+------------------                                ------------------
+SendMessage ("OpenFileWindow") .................. UniFileBrowser.use.OpenFileWindow (OpenFileFunction)
+SendMessage ("SaveFileWindow") .................. UniFileBrowser.use.SaveFileWindow (SaveFileFunction)
+SendMessage ("OpenFolderWindow", showFiles) ..... UniFileBrowser.use.OpenFolderWindow (showFiles, OpenFolderFunction)
+SendMessage ("CloseFileWindow") ................. UniFileBrowser.use.CloseFileWindow()
+SendMessage ("SetGameObject", gameObject) ....... N/A
+SendMessage ("SetWindowTitle", title) ........... UniFileBrowser.use.SetWindowTitle (title)
+SendMessage ("SetPath", path) ................... UniFileBrowser.use.SetPath (path)
+fileBrowserScript.FileWindowOpen() .............. UniFileBrowser.use.FileWindowOpen()
+fileBrowserScript.GetFileWindowRect() ........... UniFileBrowser.use.GetFileWindowRect()
