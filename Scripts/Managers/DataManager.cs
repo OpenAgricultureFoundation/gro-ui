@@ -14,9 +14,7 @@ public class DataManager : MonoBehaviour {
 	// Save File variables
 	public string username, token, ipAddress;
 	public bool initialLoad = false, stayLoggedIn = false;
-
-	//Guest logged in variable
-	public bool isGuest=false;
+	
 
 	// Session stored variables
 	public RuntimePlatform platform = Application.platform;
@@ -205,6 +203,8 @@ public class DataManager : MonoBehaviour {
 		}
 		yield return null;
 	}
+	
+	
 
 	public void DataDownload(Dictionary<string, string> sensingPoints, int startTime, int endTime, string filePath)
 	{

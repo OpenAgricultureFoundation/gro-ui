@@ -23,13 +23,6 @@ public class EnterLoginCredentials : MonoBehaviour {
 		LoginManager.loginManager.StartCoroutine("LoginAttempt", creds);
 	}
 
-	public void GuestLogin()
-	{
-		//Login as Guest
-		DataManager.dataManager.isGuest = true;
-		LoginManager.loginManager.StartCoroutine ("LoginGuest");
-	}
-
 	public void InputEdit()
 	{
 		if (emailInput.text.Length > 0 && passwordInput.text.Length > 0) 
