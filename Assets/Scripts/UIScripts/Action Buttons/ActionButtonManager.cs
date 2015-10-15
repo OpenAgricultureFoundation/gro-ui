@@ -11,9 +11,7 @@ public class ActionButtonManager : MonoBehaviour {
 	public List<Button> actionButtons = new List<Button>();
 	public Button collapseButton;
 	public Image collapseArrow;
-
-	public bool isGuest = false;
-
+	
 	private bool collapsed = false;
 	private float panelWidth = 140;
 
@@ -28,7 +26,7 @@ public class ActionButtonManager : MonoBehaviour {
 			Destroy (gameObject);
 		}
 
-		if (isGuest == true) {
+		if (DataManager.dataManager.isGuest == true) {
 			foreach (Button button in actionButtons) {
 				button.interactable = false;
 			}
@@ -37,7 +35,7 @@ public class ActionButtonManager : MonoBehaviour {
 
 	public void SetActionButtonsInteractable(bool val)
 	{
-		if (isGuest == false) {
+		if (DataManager.dataManager.isGuest  == false) {
 			foreach (Button button in actionButtons) {
 				button.interactable = val;
 			}
@@ -46,7 +44,7 @@ public class ActionButtonManager : MonoBehaviour {
 
 	public void ModuleStart()
 	{
-		if (isGuest == false) {
+		if (DataManager.dataManager.isGuest  == false) {
 
 			SetActionButtonsInteractable (false);
 		}
@@ -54,7 +52,7 @@ public class ActionButtonManager : MonoBehaviour {
 
 	public void ModuleEnd()
 	{
-		if (isGuest == false) {
+		if (DataManager.dataManager.isGuest == false) {
 
 			SetActionButtonsInteractable (true);
 		}
@@ -62,7 +60,7 @@ public class ActionButtonManager : MonoBehaviour {
 
 	public void CollapsePanel(bool val)
 	{
-		if (isGuest == false) {
+		if (DataManager.dataManager.isGuest == false) {
 
 			foreach (Button button in actionButtons) {
 				button.gameObject.SetActive (!val);
@@ -80,7 +78,7 @@ public class ActionButtonManager : MonoBehaviour {
 
 	public void CollapseButtonPress()
 	{
-		if (isGuest == false) {
+		if (DataManager.dataManager.isGuest  == false) {
 
 			collapsed = !collapsed;
 

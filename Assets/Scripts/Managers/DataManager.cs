@@ -14,7 +14,9 @@ public class DataManager : MonoBehaviour {
 	// Save File variables
 	public string username, token, ipAddress;
 	public bool initialLoad = false, stayLoggedIn = false;
-	
+
+	//Guest logged in variable
+	public bool isGuest=false;
 
 	// Session stored variables
 	public RuntimePlatform platform = Application.platform;

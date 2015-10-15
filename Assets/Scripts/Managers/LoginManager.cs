@@ -134,7 +134,16 @@ public class LoginManager : MonoBehaviour {
 		// Else return to login screen and notify bad of login
 		yield return null;
 	}
-	
+
+	public IEnumerator LoginGuest()
+		//Login as Guest. 
+	{
+		SuccessfulLogin();
+		//Set Login bool in action buttons as guest. 
+
+		yield return null;
+	}
+
 	private IEnumerator ValidateToken(string token)
 	{
 		yield return null;
