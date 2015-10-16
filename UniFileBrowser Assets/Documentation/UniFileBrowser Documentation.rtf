@@ -1,0 +1,455 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww19200\viewh13280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs30 \cf0 Welcome to UniFileBrowser! For an example scene demonstrating usage, you can import the UniFileBrowserExample.unitypackage file. (If you're using the Unity Asset Store version, the demo is automatically included, but can be deselected when importing if you don't want it.) The UniFileBrowser script itself can be used with Unityscript/Javascript, C#, or Boo, as long as you keep it in a folder that's compiled first, such as Standard Assets or Plugins.\
+\
+Note that the UniFileBrowser.js script is the only thing that's strictly necessary to import. You can uncheck the "UniFileBrowser Assets" folder when importing the UniFileBrowser package if you already have your own GUISkin set up. The default skin for UniFileBrowser matches the default Unity GUISkin in looks. There's an additional skin you can use, which you can import from the AlternateGUISkin.unitypackage file. In general, though, it's likely that you'd create your own skin; details for that are in the File Browser GUI Skin section, below.\
+\
+The example scene is called 
+\b UniFileBrowserExample
+\b0 . It uses a simple script called UniFileBrowserExample, which is provided in both Javascript and C#. When this scene is opened and run, you'll see three buttons: Open, Save, and Open Folder. When one of these is clicked, it opens up the UniFileBrowser window with the appropriate open or save actions. You can browse through files and "open" or "save" a pretend file (or folder in the case of "Open Folder"), so you can see how it works. No file is actually opened or saved in this example; only the selected file or folder names are displayed temporarily.\
+\
+
+\b WARNING: 
+\b0 there's an option to enable a Delete button, and unlike the open and save buttons, the Delete button is "live" and will really delete files. There's a confirmation dialog, but still, be careful about using this. If you enable the Delete button, it's very strongly recommended that you should also enable the LimitToInitialFolder option, which will limit the scope of possible damage by preventing navigation to other folders.\
+\
+Note that UniFileBrowser does not do any actual loading or saving of data. It's a file browser only. What you do with the files that are selected is up to you, since data handling depends entirely on the application you are writing. If you're unfamiliar with file IO, see the System.IO.File docs on MSDN: {\field{\*\fldinst{HYPERLINK "http://msdn.microsoft.com/en-us/library/system.io.file.aspx"}}{\fldrslt http://msdn.microsoft.com/en-us/library/system.io.file.aspx}}\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+
+\b \cf0 GENERAL FILE WINDOW USAGE
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+Operation should be pretty obvious to anyone familiar with typical file browsers. The window can be dragged with the title bar, and resized by dragging the lower-right corner. The popup menu at the top allows you to navigate to folders earlier in the current directory path.\
+\
+Files are normally presented in two groups, folders listed first and files listed second, with each group sorted alphabetically. If the "Show Volumes" option is checked, then there are three groups, with the first being a list of volumes (on OS X) or drive letters (on Windows). If the list of files can't fit in the window, the rest can be seen by using the scroll bar or mouse wheel. Files can be opened by either single-clicking them and then selecting "open", or by double-clicking them. Files can be saved with the same methods, or by typing in a new name. Trying to save over an existing file will bring up a confirmation dialog that asks the user to cancel or replace. The optional delete button allows deletion of files.\
+\
+Full keyboard control is also implemented: up and down arrow keys will move the highlighted file up and down respectively. Holding alt while using the up and down arrow keys will jump to the top or bottom of the list. Holding Command/Apple (OS X) or Control (Windows/Linux) while pressing the up arrow will go to the next higher directory level, and pressing down with a folder selected will enter that folder. The Escape key will either cancel a confirmation dialog or close the file browser window with no action, whichever is appropriate. Likewise, Return/Enter will OK a confirmation, select a highlighted file, or open a highlighted folder, whichever is appropriate.\
+\
+If the "Allow Multi Select" option is checked, then multiple files can be selected for opening. Holding down Shift and clicking selects a range of file names, and holding down Command/Control (depending on OS) and clicking adds or removes individual file names.\
+\
+If the "OpenFolderWindow" function is used, then a Select button will appear next to the popup menu, and clicking this button will return the path to the folder that appears in the popup menu.\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+
+\b \cf0 FILEBROWSER PUBLIC VARIABLES IN THE INSPECTOR
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+In order for UniFileBrowser to work, the UniFileBrowser.js script must be attached to some object in the scene. It's probably simplest if it's attached to an empty GameObject, but it can be attached to anything (but make sure that the object it's attached to is not destroyed, of course). It will survive scene changes, and will prevent more than one instance of itself from existing. When the script is attached to an object (either by dragging the UniFileBrowser.js file onto the object, or selecting the object and choosing Components/Scripts/UniFileBrowser), you can see a number of options available as public variables in the inspector:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa100\pardirnatural
+
+\b \cf0 Filter Files:
+\b0  if checked, this makes files be filtered by specified file extensions, such as .jpg, .txt, .unity, etc. So only the filtered files (and all folders) will be displayed.\
+
+\b Filter File Extensions:
+\b0  this is an array of file extensions to be used if file filtering is on. These can be entered either with a dot (".jpg") or without ("jpg"). This array can be left blank if you don't use the filter files option.\
+
+\b Auto Add Extension:
+\b0  if checked, this makes an extension automatically be added to any files that are saved. For example, if you have a routine for saving PNG files, you can specify that ".png" be added to any file that's saved.\
+
+\b Added Extension:
+\b0  this is the extension that will be added to saved files if Auto Add Extension is checked. It can be entered either with a dot (".jpg") or without ("jpg").\
+
+\b Use Filter Button:
+\b0  if checked, this makes a "Filter" button appear in the lower-left of the file browser window inside a small tab. This allows the user to toggle between files being filtered or not.\
+
+\b Use Delete Button: 
+\b0 if checked, this makes a "Delete" button appear to the left of the "Cancel" button. Unlike Open/Save, functionality for this button is built-in and doesn't need any file handling in your own scripts. 
+\b WARNING! 
+\b0 Obviously this can be quite destructive. You should almost certainly use "LimitToInitialFolder" (see below) if you enable this button.\
+
+\b Default File Name:
+\b0  you can use this to specify a default name that's automatically supplied when saving a file.\
+
+\b Max File Name Length: 
+\b0 when saving a file, this will limit file names to the specified number of characters, not including the auto-added extension (if one is used). The max length must be at least 3, and not greater than 128.\
+
+\b Limit To Initial Folder: 
+\b0 if checked, the user will not be able to navigate away from the initial folder/directory. Only files will be shown in the file browser window, not folders or volumes, and the folder popup menu will not be shown. When using this option, you probably want to specify the path using the SetPath function (see the "Using the filebrowser functions in code" section above). Typically you would use this if you have a particular gamesave folder that you want all saves to go into. Note that if you use OpenFolderWindow function, limitToInitialFolder is always false, since it wouldn't make sense to browse for folders and be limited to the initial folder at the same time.\
+
+\b Show Volumes: 
+\b0 if checked, then a list of volumes (on OS X and Linux) or driver letters (on Windows) will appear at the top of the folder list, to allow navigation to different volumes. (Although this can always be done on OS X by browsing to "/Volumes" manually, but having a list is more convenient.) If LimitToInitialFolder is checked, then ShowVolumes will have no effect.\
+
+\b Volumes Are Separate:
+\b0  if checked, then the volumes will be shown in a separate non-scrolling box, rather than included in the list of folders and files. Has no effect if volumes aren't shown.\
+
+\b Show Date: 
+\b0 if checked, then the file modification date is shown next to each file and folder.\
+
+\b Date Width Add: 
+\b0 the number of pixels to add the the date field (if used), in case the automatic width computation is not accurate enough.\
+
+\b Sort Type:
+\b0  this sorts the file list by Name, DateNewest, or DateOldest. Name sorts alphabetically, DateNewest sorts by newest date on top, and DateOldest sorts by oldest date on top. Volumes and folders are always grouped together regardless of sort type, though folders will still be sorted as specified.\
+
+\b Allow Multi Select: 
+\b0 if checked, then multiple files can be selected when using OpenFileWindow, using Shift to add a range of files and Command/Control (depending on OS) to add or subtract individual files. In this case a string array of paths is returned instead of a single string.\
+
+\b Allow App Bundle Browsing:
+\b0  on OS X, apps are bundled into folders with an ".app" extension. If this is checked, these app bundle folders can be browsed like any other folder. Otherwise they are invisible.\
+
+\b Show Hidden OS X Files:
+\b0  on OS X, files and folders are normally hidden if the name starts with ".". If this is checked, hidden files and folders are shown. Otherwise they are invisible.\
+
+\b Prevent Illegal Char Input: 
+\b0 if checked, then users are unable to enter any of the illegal characters (as defined below) when typing file names into the "Save as" textfield. If not checked, then it would be a good idea to "scrub" file names in your own saving code.\
+
+\b Illegal Chars: 
+\b0 a string that contains the characters that are not allowed to be input, if PreventIllegalCharInput is checked. By default this contains all characters that are typically not allowed in common file systems.\
+
+\b Allow Window Resize: 
+\b0 if checked, then the user may resize the window by dragging the lower-right corner. Otherwise the window can't be resized.\
+
+\b Allow Window Drag: 
+\b0 if checked, then the user may drag the window around the screen with the title bar. Otherwise the window can't be moved.\
+
+\b File Window ID: 
+\b0 the window ID used by OnGUI for the main file browser window. Make sure this doesn't conflict with any of your own windows.\
+
+\b Message Window ID: 
+\b0 the window ID used by OnGUI for the error/confirmation dialog window. Again, make sure this doesn't conflict with any windows you may be using.\
+
+\b Double Click Time: 
+\b0 This is only used with Unity 3 and Linux builds. Due to a bug with Unity, double-clicking has to be handled manually in those cases. Normally the double-click time is set in the OS, but when it's handled manually, the time between clicks that counts as a click (measured in seconds) is set here.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+The rest of the public variables are related to the GUI and GUISkin:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa100\pardirnatural
+
+\b \cf0 File Window Inset:
+\b0  the number of pixels that the GUI elements will be inset from the edges of the window. Essentially a border.\
+
+\b Default File Window Rect:
+\b0  this is the default position and size of the file browser window when it's first opened.\
+
+\b Min Window Width:
+\b0  the file browser window is not allowed to be resized to anything smaller than this number of pixels wide.\
+
+\b Min Window Height:
+\b0  the file browser window is not allowed to be resized to anything smaller than this number of pixels high.\
+
+\b Message Window Size:
+\b0  this is the number of pixels wide and high the error/confirmation dialog window is. It always appears in the middle of the screen.\
+
+\b Popup Rect: 
+\b0 this is the position and size of the popup folder list button, relative to the file window inset. So normally the x/y values would be 0.\
+
+\b Button Size:
+\b0  the Cancel, Delete, and Open/Save buttons are this number of pixels wide and high.\
+
+\b Window Tab Offset:
+\b0  only used if UseFilterButton is enabled. This is the number of pixels the window tab texture is offset from the default position in the x/y dimensions, so it can be moved around to account for different GUISkins.\
+
+\b Gui Depth: 
+\b0 use this to make the file browser window appear on top of or behind elements drawn by other OnGUI functions. The default of -1 makes it drawn on top of anything that sets a GUI.depth of 0 or higher.\
+
+\b Gui Skin:
+\b0  the GUISkin you want to use for the file browser should be dragged onto this slot. This is required, because it must contain several custom styles, as detailed below. The default is UniFileBrowserAssets/UniFileBrowserGUISkin. If you use your own skin called UniFileBrowserGUISkin, it will be automatically placed in this slot when the UniFileBrowser script is first attached to a Game Object, or when you use the reset function (the location of the GUISkin doesn't matter, as long as it's in the project's Assets folder somewhere).  So in that case, it won't be necessary to drag it into this slot.\
+
+\b Highlight Texture: 
+\b0 the texture you want to use for files and folders that have been selected in the file browser. This is optional. The default texture is UniFileBrowserAssets/Textures/UFBhighlight. If you use your own texture called UFBhighlight, it will be automatically placed in this slot when the UniFileBrowser script is first attached to a Game Object, or when you use the reset function (the location of the texture doesn't matter, as long as it's in the project's Assets folder somewhere).\
+
+\b Highlight Text Color: 
+\b0 the color that text is changed to for files and folders that have been selected in the file browser. This should show up nicely against whatever you use for the highlight texture. \
+
+\b Window Tab:
+\b0  the texture you want to use for the "filter file extensions" tab should be dragged onto this slot. This is optional. The default texture is UniFileBrowserAssets/Textures/UFBwindowtab. If you use your own texture called UFBwindowtab, it will be automatically placed in this slot (as detailed in HighlightTexture, above).\
+
+\b Message Window Texture:
+\b0  the texture you want to use for the background of the message/error window. The regular Window style should have a background texture that depicts the resize widget (which is a 25x25 pixel area) in the lower-right corner, but message/error windows can't be resized, so the resize widget shouldn't be included in the background graphic for the message window texture. Otherwise it can be a duplicate of the regular window background texture. The default texture is UniFileBrowserAssets/Textures/UFBwindow2. If you use your own texture called UFBwindow2, it will be automatically placed in this slot.\
+
+\b Drive icon:
+\b0  the texture you want to use for the drive icon in the file list should be dragged onto this slot. This is optional, but recommended if you're using the Show Volumes option. The default texture is UniFileBrowserAssets/Textures/UFBdriveicon. If you use your own texture called UFBdriveicon, it will be automatically placed in this slot.
+\b \
+Folder icon:
+\b0  the texture you want to use for the folder icon in the file list should be dragged onto this slot. This is optional, though it's a good idea to have, or else folders and files are not easily distinguishable. The default texture is UniFileBrowserAssets/Textures/UFBfoldericon. If you use your own texture called UFBfoldericon, it will be automatically placed in this slot.\
+
+\b File icon: 
+\b0 the texture you want to use for the file icon in the file list should be dragged onto this slot. This is optional. The default texture is UniFileBrowserAssets/Textures/UFBfileicon. If you use your own texture called UFBfileicon, it will be automatically placed in this slot.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+
+\b \cf0 USING THE FILEBROWSER FUNCTIONS IN CODE
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+There are 23 public functions that you can access through code. The functions should be prefaced with "UniFileBrowser.use." in order to access them. For example, "UniFileBrowser.use.OpenFileWindow (OpenFileFunction);".\
+\
+
+\b OpenFileWindow (OpenFileFunction)\
+
+\b0 This causes the file browser window to open in Open File mode, where users can select files to be opened. The OpenFileFunction is a function in your script that handles the string returned from UniFileBrowser when the user selects a file. The function can be named whatever you desire, but it must have a string as a parameter. If you're using the AllowMultiSelect option, then the function should accept a string array rather than a string. (Which is true even if only one file is selected...in this case the string array will have just one entry.) So, the OpenFileFunction should be defined like this, if not using AllowMultiSelect:\
+\
+	function OpenFile (path : String)  // JS\
+	void OpenFile (string path)  // C#\
+\
+Or like this if using AllowMultiSelect:\
+\
+	function OpenFile (paths : String[])  // JS\
+	void OpenFile (string[] paths)  // C#\
+\
+Note that if using AllowMultiSelect, the string array is not returned in any defined order, so if you want it to be sorted in some way you should write code to do this in your OpenFileFunction. Also, while it's possible for the user to select folders using multi-selection, these will be ignored and only actual files will be returned in the array.\
+\
+The path string (or strings) contains the entire path, including the file name. If you want the file name alone, you can write code to separate it (see the UniFileBrowser example script).\
+\
+
+\b SaveFileWindow (SaveFileFunction)\
+
+\b0 This causes the file browser window to open in Save File mode. The SaveFileFunction is a function in your script that handles the string returned from UniFileBrowser when the user selects or creates a file name. The SaveFileFunction should be defined like the OpenFileFunction, although only with a string and not a string array, since Allow Multi Select only affects opening files and not saving them. Namely:\
+\
+	function SaveFile (path : String)  // JS\
+	void SaveFile (string path)  // C#\
+\
+The path string contains the entire path, including the file name. If you want the file name alone, you can write code to separate it (see the UniFileBrowser example script).\
+\
+
+\b OpenFolderWindow (showFiles : boolean, OpenFolderFunction
+\b0 )\
+This is similar to OpenFileWindow, except the purpose is to let the user select a directory/folder instead of a file. If "showFiles" is true, then both folders and files are shown when using this function (though only folders can be selected). If false, then only folders are shown. The OpenFolderFunction should be defined like OpenFileFunction or SaveFileFunction, using a string as a parameter:\
+\
+	function OpenFolder (path : String)  // JS\
+	void OpenFolder (string path)  // C#\
+\
+
+\b CloseFileWindow ()\
+
+\b0 Normally you shouldn't need to call this, since closing the window is typically initiated by the user, so this is handled automatically when appropriate after OpenFileWindow, SaveFileWindow, or OpenFolderWindow are called. But if you still need to do this for whatever reason, this function will, as expected, cause the file browser window to close immediately. The only exception is if an error or confirmation dialog window is currently open, since those are important and need to be handled properly.\
+\
+
+\b SetPath (path : String
+\b0 )\
+By default, the path is initially set to the directory where your program is launched from. By passing the string "path", you can set it to be the path defined by this string instead. This should be called before using any of the Open or Save functions. If you use SetPath, make sure you use it in Start (or later) rather than Awake, since UniFileBrowser is not necessarily initialized when your Awake function runs. (Or you can use script execution order settings in Unity to make sure UniFileBrowser runs first.)\
+\
+
+\b SetWindowTitle (title : String
+\b0 )\
+In some cases you might want to use a different title for the file browser window other than the default "Open file"/"Save file"/"Select folder" titles. For example, say you have an app that allows saving of several different types of files, and you want the title to reflect which type is being saved. In this case, you can use the SetWindowTitle function to override the default title. Just call SetWindowTitle with a string that holds the desired title, after calling OpenFileWindow or SaveFileWindow. For example,\
+\
+	UniFileBrowser.use.SaveFileWindow (SaveFile);\
+	UniFileBrowser.use.SetWindowTitle ("Save image");\
+\
+It's important that SetWindowTitle is called after the open or save function, since otherwise the default title will be used.\
+\
+
+\b SetWindowPosition (position : Vector2)\
+
+\b0 If you want to set the file browser window's position through code, rather than relying on the "default file window rect" inspector variable, call this function with the desired x/y GUI coords. The file browser window will not allow itself to be placed off-screen, so it's possible that the actual position won't match the requested position, depending on the size of the screen. UniFileBrowser will attempt to use the closest possible position without reducing the window size below the minimum.\
+\
+	UniFileBrowser.use.SetWindowPosition (new Vector2(425, 325));\
+\
+
+\b SetWindowSize (size : Vector2)\
+
+\b0 Similarly, you can set the width and height of the window with this function (where the x/y of the Vector2 equals width/height). Again, UniFileBrowser will constrain the window to the screen, so the actual size may be less than the requested size, if the new size is too big for the screen at the window's current position.\
+\
+	UniFileBrowser.use.SetWindowSize (new Vector2(500, 450));\
+\
+
+\b FileWindowOpen ()
+\b0 \
+This returns a boolean that's true or false depending on whether the file browser window is open or not. For example:\
+\
+	if (UniFileBrowser.use.FileWindowOpen()) \{\
+		print ("Browser window is open");\
+	\}\
+\
+
+\b GetFileWindowRect ()\
+
+\b0 This returns a Rect with the current GUI coordinates of the file browser window. For example:\
+\
+	if (UniFileBrowser.use.GetFileWindowRect().Contains(Event.current.mousePosition)) \{		print ("Mouse is inside file browser window");\
+	\}\
+\
+
+\b SetFileExtensions (extensions : String[])
+\b0 \
+If you want to set different file filter extensions at runtime, use this function. It takes a String[] array, where each entry is a file extension. The file extensions can start with "." or not, so for example both "jpg" or ".jpg" are acceptable. If the string array doesn't contain anything, file filtering is turned off.\
+\
+
+\b SetAutoAddedExtension (extension : String)
+\b0 \
+If you're using AutoAddExtension, you can use this function to change the extension at runtime. The extension can start with "." or not.\
+\
+	UniFileBrowser.use.SetAutoAddedExtension ("jpg");\
+\
+
+\b SendWindowCloseMessage (CloseWindowFunction)\
+
+\b0 If your app needs to know when the browser window is closed, you can create a function and pass it to SendWindowCloseMessage, and your function will be called as soon as the user closes the browser window. The function should have no arguments and should return void. For example:\
+\
+	function Start () \{\
+		UniFileBrowser.use.SendWindowCloseMessage (FileWindowClosed);\
+	\}\
+\
+	function FileWindowClosed () : void \{\
+		print ("File browser window was closed");\
+	\}\
+\
+
+\b DontSendWindowCloseMessage ()\
+
+\b0 If you've previously used SendWindowCloseMessage and don't want your CloseWindowFunction to be called anymore, then call DontSendWindowCloseMessage:\
+\
+UniFileBrowser.use.DontSendWindowCloseMessage();\
+\
+
+\b SendWindowChangeMessage (WindowChangedFunction)\
+
+\b0 If you want to know when the file browser window is moved by the user, you can create a function and pass it to SendWindowChangeMessage, and your function will be called whenever the browser window is moved or resized. The function should have no arguments and should return void. For example:\
+\
+	function Start () \{\
+		UniFileBrowser.use.SendWindowChangeMessage (FileWindowChanged);\
+	\}\
+\
+	function FileWindowChanged () : void \{\
+		print ("File browser window was moved");\
+	\}\
+\
+
+\b DontSendWindowChangeMessage ()\
+
+\b0 If you've previously used SendWindowChangeMessage and don't want your WindowChangedFunction to be called anymore, then call DontSendWindowChangeMessage:\
+\
+	UniFileBrowser.use.DontSendWindowChangeMessage();\
+\
+
+\b SetCustomFunction (CustomFunction)
+\b0 \
+This allows you to inject OnGUI code into the file window, which you can use for custom controls. The function should have no arguments and should return void. This example will make a button labeled "X" on the right-hand side of the file window near the top, which will print "X!" when clicked:\
+\
+	function Start () \{\
+		UniFileBrowser.use.SetCustomFunction (MyCustomButton);\
+	\}\
+\
+	function MyCustomButton () : void \{\
+		if (GUI.Button (Rect(UniFileBrowser.use.GetFileWindowRect().width-50, 50, 25, 25), "X")) \{\
+			print ("X!");\
+		\}\
+	\}\
+\
+
+\b RemoveCustomFunction ()
+\b0 \
+If you don't want the custom function to run anymore, calling this function will stop it:\
+\
+	UniFileBrowser.use.RemoveCustomFunction();\
+\
+
+\b RefreshFileList ()
+\b0 \
+You can use this to manually update the file list. You might want to do this if, for example, you have a custom function that changes what types of files are displayed.\
+\
+	UniFileBrowser.use.RefreshFileList();\
+\
+
+\b UseFolderFilterFunction (CustomFunction)
+\b0 \
+This will allow you to supply a function that has custom logic for determining what folders are displayed. You could, for example, only show folders that contain .jpg and .png files. The function should accept a FileInfo array and return a boolean. The logic is applied to each folder in the list (if there are any). If the function returns true, then the folder is displayed, and if it returns false, then the folder will not be included in the list. For information on the FileInfo class, see {\field{\*\fldinst{HYPERLINK "http://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx"}}{\fldrslt http://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx}}. This example will only allow folders which have at least one file with a ".asset" extension inside:\
+\
+	import System.IO;\
+\
+	function Start () \{\
+		UniFileBrowser.use.UseFolderFilterFunction (MyFolderFilter);\
+	\}\
+\
+	function MyFolderFilter (files : FileInfo[]) : boolean \{\
+		var containsAsset = false;\
+		for (var i = 0; i < files.Length; i++) \{\
+			if (files[i].Extension == ".asset") \{\
+				return true;\
+			\}\
+		\}\
+		return false;\
+	\}\
+\
+
+\b DontUseFolderFilterFunction ()\
+
+\b0 If you've previously called UseFolderFilterFunction and don't want the custom filter to be applied anymore, then call this function:\
+\
+	UniFileBrowser.use.DontUseFolderFilterFunction();\
+\
+
+\b UseFileFilterFunction (CustomFunction)
+\b0 \
+Along the same lines as UseFolderFilterFunction, you can use this to filter all the files in the list by using custom logic, in those cases where the standard extension filtering isn't enough. The function should accept a string and return a boolean. The logic is applied to each file in the list (if there are any). If the function returns true, then the file is shown, otherwise it's not. This example will cause only files that start with "Foo" and end with ".bar" to be included, such as Foo1.bar, FooQQ.bar, etc.:\
+\
+	function Start () \{\
+		UniFileBrowser.use.UseFileFilterFunction (MyFileFilter);\
+	\}\
+\
+	function MyFileFilter (filename : String) : boolean \{\
+		if (filename.StartsWith ("Foo") && filename.EndsWith (".bar")) \{\
+			return true;\
+		\}\
+		return false;\
+	\}\
+\
+
+\b DontUseFileFilterFunction ()\
+
+\b0 If you've previously called UseFileFilterFunction and don't want the custom filter to be applied anymore, then call this function:\
+\
+	UniFileBrowser.use.DontUseFileFilterFunction();\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+
+\b \cf0 FILE BROWSER GUI SKIN
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+The file browser window can be reskinned as usual by using a GUISkin. See the Unity documentation on GUI skins if you're unsure about this process. However, there are a few extras you should be aware of. Namely, there are four custom styles that UniFileBrowser.js relies on, which must be present in the GUI skin. In the inspector, 
+\b Custom Styles
+\b0  is an array entry at the bottom of a custom GUISkin list. The size should be 4 (or more if you're using your own custom styles for other things), and the entries should be named "listScrollview", "popupList", "popupButton", and "popupBox". You can look at the included GUISkin to see how these are set up, but the important parts are listed below:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa100\pardirnatural
+
+\b \cf0 listScrollview:
+\b0  This is used to show the folders and files in the file browser list. In the supplied GUISkin, it's similar to the default GUI.Label style except with tighter spacing.\
+
+\b popupList:
+\b0  This is similar to the listScrollview style, but the 
+\b Hover
+\b0  and 
+\b On Hover
+\b0  entries here should have a highlight texture for the Background, so users can see what they're highlighting in the folder popup list.\
+
+\b popupButton: 
+\b0 This should have the texture used for the folder list popup button in the Background of the 
+\b Normal
+\b0  entry. None of the other entries need to have anything in them. In the supplied GUISkin, the texture has arrows on the right-hand side to indicate that it's a popup button, so the 
+\b Padding
+\b0  values here prevent text from being potentially printed on top of the arrows. (Specifically, left 11, right 30, top 8, bottom 2.) The 
+\b Border
+\b0  values make the button display properly. For the default skin, these are: left 5, right 14, top 4, bottom 4. The border and padding values may be different depending on the texture you use.\
+
+\b popupBox: 
+\b0 This should have the texture used for the border/background of the popup folder list in the Background of the 
+\b Normal
+\b0  entry. The border values of 4, 4, 4, 4 make the text be inset by 4 pixels.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc
+
+\b \cf0 LICENSE INFORMATION\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\b0 \cf0 This software is licensed to you (or your company) only. You can use it in as many projects as you like, and can alter the code as you see fit, but redistribution of the original or any modified versions is prohibited, except as necessary to produce a working runtime.\
+\
+\'a9 2014 Starscene Software}

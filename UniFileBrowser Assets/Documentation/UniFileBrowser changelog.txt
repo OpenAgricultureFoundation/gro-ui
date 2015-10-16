@@ -1,0 +1,171 @@
+UniFileBrowser Release Notes
+----------------------------
+
+UniFileBrowser 2.5
+
+Additions:
+	• SetWindowPosition and SetWindowSize functions, for setting the file window position/size through code.
+
+Changes:
+	• Touch input with mobile devices is improved; specifically, lists can be scrolled by touch-dragging instead of having to use the scroll bar.
+	• When using the open folder functionality, the "Select" button will work with a selected/highlighted folder. If no folders are highlighted, then it uses the current folder as usual.
+
+------------------
+
+UniFileBrowser 2.4.2
+
+Fixes:
+	• Fixed OpenFolderWindow function not working properly if "limit to initial folder" is active.
+	• Fixed crash when browsing to an empty folder if "show volumes" and "volumes are separate" are checked.
+
+------------------
+
+UniFileBrowser 2.4.1
+
+Fixes:
+	• Reverted fix in 2.4 about empty volumes not being included in the list, since that was causing response delays for some people.
+	• Empty volumes don't cause an error any more, so the file browser can continue to be used normally; instead there are simply no folders or files listed.
+	• Fixed volume selection on Windows so "\" doesn't show up in the popup list followed by the volume; instead only the volume is listed.
+
+------------------
+
+UniFileBrowser 2.4
+
+Additions:
+	• DateWidthAdd variable, to manually add width to the date field (if used), in case the auto width computation is not accurate enough.
+
+Fixes:
+	• Empty volumes are not included in the list.
+	• Volumes work on Android.
+	• When using OpenFolderWindow, limitToInitialFolder is forced to false, since it doesn't make any logical sense for it to be true in that case.
+
+------------------
+
+UniFileBrowser 2.3
+
+Additions:
+	• DefaultFileName variable, so you can optionally have a file name automatically supplied when saving.
+	• MaxFileNameLength variable, to limit the max characters entered when saving a file.
+	• ShowDate variable, which toggles whether file modification dates are shown.
+	• SortType variable, for sorting the file list by name or date (which can be newest first or oldest first).
+	• VolumesAreSeparate variable, for displaying volumes in a separate box from the rest of the file list, in the case where ShowVolumes is used.
+	• SetCustomFunction function, which enables you to run custom GUI code in the file window from your own script.
+	• RemoveCustomFunction function, if you want the custom function to stop running.
+	• SetAutoAddedExtension function, in case you want to change the auto-added file extension at runtime.
+	• RefreshFileList function, for updating the folder/file list on demand from your own scripts.
+	• UseFolderFilterFunction function, for running a delegate that you can use to determine if a folder should be included or not. For example, you could set it up so only folders that contain .jpg files are shown.
+	• DontUseFolderFilterFunction function, for turning the custom folder filter off.
+	• UseFileFilterFunction function, for using a delegate to make customized file filters in those cases where filtering by extension isn't enough.
+	• DontUseFileFilterFunction function, for turning the custom file filter off.
+
+Changes:
+	• If an extension is auto-added, users are prevented from changing it when entering a file name.
+	• The file name textfield isn't displayed anymore when loading files...even disabled, there wasn't really much point having it there.
+
+Fixes:
+	• Message window text positioning uses the file window inset rather than being hard-coded to 10 pixels from the top.
+	• Hitting escape to close the file window closes it properly.
+	• Filter button position is based on the window tab offset instead of being hard-coded.
+
+------------------
+
+UniFileBrowser 2.2
+
+Additions:
+	• AllowWindowResize and AllowWindowDrag variables, which are pretty self-explanatory.
+
+Changes:
+	• The positions of GUI elements in the file browser window are more relative and less hard-coded. As such: 1) There is now a FileWindowInset variable, for the inset space in pixels around the inside of the window. 2) The ButtonPosition variable is removed. 3) The PopupRect variable is relative to the FileWindowInset. 4) The title bar area is taken from the window style's top padding.
+	• If using LimitToInitialFolder, the folder path button is removed.
+
+Fixes:
+	• If using "autoAddExtension" when saving, the added extension is not highlighted when the file browser window is opened.
+	• Better handling for textfield vertical size so the bottom of text shouldn't get cut off.
+	• Keyboard scrolling will work correctly regardless of font size. (Due to an apparent issue with GUILayout, the line height could be off by 1 pixel in some cases, so now GUILayout is not used.)
+	• Dialog window background texture remains correct when the window is clicked on.
+
+------------------
+
+UniFileBrowser 2.1.1
+
+Changes:
+	• Improvements in behavior when saving files: file name is not lost when changing folders, keyboard navigation only works after clicking on the file list area, clicking on file name textfield deselects anything in the file list area.
+
+Fixes:
+	• If using "autoAddExtension" when saving, double-clicking on a folder works properly.
+
+------------------
+
+UniFileBrowser 2.1
+
+Additions:
+	• SendWindowChangeMessage function, which is like SendWindowCloseMessage, except it's sent when the file browser window is moved or resized.
+	• DontSendWindowChangeMessage, which makes UniFileBrowser stop sending the window changed message, if you called the above function and don't want it to do that anymore.
+	• Added a WindowTabOffset public variable, so if you're using the file filter button, the tab can be moved around without having to touch the code.
+
+Changes:
+	• When first attaching the UniFileBrowser script to a GameObject, or when selecting Reset, the public guiSkin and texture variables are automatically set up with the appropriate UniFileBrowser textures and so on, if they are named appropriately. So there's less draggin' and droppin' involved in setting things up.
+	• The text field for saving files is based on the scroll view line height now, rather than being hard-coded.
+	• The default UniFileBrowser GUISkin now matches the default Unity GUIskin. The previous skin is available in the AlternateGUISkin unitypackage file.
+	• Moved default location from Standard Assets to Plugins.
+
+Fixes:
+	• Work-around for Event.current.clickCount bug in Unity 3 and Linux builds, so that double-clicking works properly. This uses the DoubleClickTime public variable to process double-clicks. The DoubleClickTime variable is not used in Unity 4 Mac/Windows builds or on mobile platforms, where the double-click timer is set by the user's OS preferences.
+
+------------------
+
+UniFileBrowser 2.0
+
+Additions:
+	• There is now an AllowMultiSelect option, so that multiple files can be selected when opening them, while holding down Command/Control (depending on OS) to add individual files, or Shift to add a range of files. If you use AllowMultiSelect when opening files, you must supply a function that will handle a String[] array rather than just a single String.
+	• SetFileExtensions function, so you can set different filters at runtime. This takes a String[] array, where each entry is a different file extension.
+	• Linux support. (I had difficulty with the mouse scrollwheel and double-clicking in Linux, which seem to be Unity bugs, however those are optional since you can use the scroll bar and the open button instead, so everything should be functional.)
+	• Optionally prevent users from inputting characters that are typically illegal in file names when saving files.
+	• The file browser script uses DontDestroyOnLoad to survive scene changes, and prevents more than one copy from existing at once.
+	• Added a C# version of the example script.
+
+Changes:
+	• SendMessage is no longer used; this has been replaced with delegates instead. That way, you don't need to use SetGameObject, and your functions can be named whatever you want (instead of OpenFile, SaveFile, etc.). So rather than this:
+
+	var fileBrowserScript = FindObjectOfType (UniFileBrowser);
+	fileBrowserScript.SendMessage ("SetGameObject", gameObject);
+	fileBrowserScript.SendMessage ("OpenFileWindow");
+
+you can just do this, assuming the function that handles opening the file is called OpenFile:
+
+	UniFileBrowser.use.OpenFileWindow (OpenFile);
+
+	• Removed SetGameObject function, due to the above change.
+	• Also, the FileWindowClosed message is no longer sent when the file browser window is closed. Instead, use the SendWindowCloseMessage function, which allows you to set up a delegate that's called when the file window is closed. e.g., "UniFileBrowser.use.SendWindowCloseMessage (MyFunctionThatsCalledWhenWindowIsClosed);". If you don't want the "file window closed" message sent anymore, use DontSendWindowCloseMessage.
+	• Due to a change in the way the file list is drawn, the "listScrollView" style in the GUISkin should no longer contain any highlight styling in the Active and OnNormal entries. Instead, the highlight texture should be assigned to the HighlightTexture variable on the UniFileBrowser script, and likewise the highlight text color should be assigned to the HighightTextColor variable.
+	• The "messageWindow" custom style in the GUISkin is no longer necessary. It's removed from the default GUISkin and can be removed from your own GUISkin if you've made one. Instead, the message window background texture should be assigned to the MessageWindowTexture variable on the UniFileBrowser script.
+	• Double-clicking works on button up now instead of button down. Also the default GUIskin has been changed so that click behavior is shown correctly (highlight occurs on button up rather than button down).
+	• The Popup.cs script is no longer needed, and the UniFileBrowser.js script should be in Standard Assets/Scripts now (so it can be used with C# scripts if necessary).
+
+------------------
+
+UniFileBrowser 1.5
+
+Additions:
+	• Option to show volumes (OS X) and drive letters (Windows).
+	• GetWindowRect function, which returns the rect of the browser window.
+	• SetWindowTitle function, so you can set custom window titles, e.g. if you're loading/saving different types of files in the same app.
+	• FileWindowClosed message sent when the file browser window is closed, in case your app needs to know this (but if not, then it's not necessary to include this function in your script, since DontRequireReceiver is used).
+
+------------------
+
+UniFileBrowser 1.4
+
+Additions:
+	• An optional Delete button for deleting files using the file browser. (This should be used with some caution.)
+	• An option to limit the file browser to the default path specified, so that navigation to other folders is not allowed and only files are shown.
+	• A SetGameObject function for setting the GameObject that messages will be sent to, so your scripts that use UniFileBrowser don't have to be attached to the same object that the UniFileBrowser script is attached to.
+
+Changes:
+	• Requires Unity 3.4 or later.  (Side benefit: can use any stripping level on iOS now thanks to Unity bugfixes.)
+	• The separate iPhone script is no more, replaced by conditional compilation, so there's only one script, which works on Mac/PC/iOS/Android (Android is not tested, but should work).
+	• The fileWindowOpen variable is now private; instead a FileWindowOpen function returns the state of the file window.
+	• The OpenFolderWindow function now needs a boolean parameter for showing files or not: true shows files (which was the previous behavior), false only shows folders.
+
+Fixes:
+	• Better handling for whether the Open button is active or not.

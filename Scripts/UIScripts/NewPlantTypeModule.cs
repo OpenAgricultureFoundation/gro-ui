@@ -8,7 +8,7 @@ public class NewPlantTypeModule : MonoBehaviour {
 	public InputField commonNameInputField, latinNameInputField;
 
 	[HideInInspector] public AddPlantModule addPlantModule;
-	[HideInInspector] public string plantTypeURL;
+	[HideInInspector] public string plantTypeURL, ptSuffix="/plantType/";
 
 	private string commonName, latinName;
 	private int minNameLength = 3;
@@ -18,12 +18,13 @@ public class NewPlantTypeModule : MonoBehaviour {
 		WWWForm form = new WWWForm ();
 		form.AddField ("common_name", commonName);
 		form.AddField ("latin_name", latinName);
-		form.AddField ("plant_size", "short-leafy");
+		//form.AddField ("plant_size", "short-leafy");
 		//form.AddField ("model", "http://" + DataManager.dataManager.ipAddress + "/plantModel/1/");
 		print (DataManager.dataManager.ipAddress);
 
-		string url = string.Concat (plantTypeURL, "/");
+		string url = DataManager.dataManager.ipAddress + ptSuffix;//plantTypeURL;//string.Concat (plantTypeURL, "/");
 		
+		Debug.Log(url);
 		object[] parms = new object[2] { url, form };
 		yield return DataManager.dataManager.StartCoroutine("PostRequest", parms);
 		

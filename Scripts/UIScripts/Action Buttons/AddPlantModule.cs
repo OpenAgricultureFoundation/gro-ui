@@ -48,7 +48,7 @@ public class AddPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite>, ISele
 		choicePanelScrollContent = transform.FindChild("ChoicesPanel").FindChild("ChoiceScrollView").FindChild("ChoiceScrollContent");
 		//AddPlantButton.interactable = false;
 		ActionButtonManager.actionButtonManager.ModuleStart ();
-		string plantTypeURLSuffix = "plantType";
+		string plantTypeURLSuffix = "plantType/";
 		plantTypeURL = string.Concat (baseURL, plantTypeURLSuffix);
 
 		yield return StartCoroutine ("GetPlantTypes");

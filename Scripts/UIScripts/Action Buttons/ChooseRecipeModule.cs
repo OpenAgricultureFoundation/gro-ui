@@ -11,13 +11,13 @@ public class ChooseRecipeModule : MonoBehaviour, IReactivatable, ISelectionRecei
 	public Button selectButton, uploadNewButton, closeButton;
 
 	[HideInInspector] public string baseURL, recipeListURL, recipeRunURL; 
-	[HideInInspector] public string currentRecipeURL;//, currentRecipeName;
+	[HideInInspector] public string currentRecipeURL, currentRunningRecipeURL;//, currentRecipeName;
 	[HideInInspector] public List<IReactivatable> toReactivate = new List<IReactivatable>();
 	[HideInInspector] public FarmTray activeTrayObject;
 
 	private Transform recipeChoiceScrollContent;
 	private Dictionary<string, JSONNode> recipeDict = new Dictionary<string, JSONNode>();
-	private const string RecipeURLSuffix = "recipe/", RecipeRunURLSuffix = "recipeRun/";
+	private const string RecipeURLSuffix = "/recipe/", RecipeRunURLSuffix = "/recipeRun/";
 	private RecipeChoice selectedRecipe;
 
 	public IEnumerator Initialize()
@@ -150,11 +150,23 @@ public class ChooseRecipeModule : MonoBehaviour, IReactivatable, ISelectionRecei
 	IEnumerator EndCurrentRecipe()
 	{
 		int nowTimestamp = (int)(System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1))).TotalSeconds - 1;
-
+		
 		WWWForm form = new WWWForm ();
 		form.AddField ("end_timestamp", nowTimestamp);
 		form.AddField ("tray", activeTrayObject.node["url"].Value);
-		//form.AddField ("recipe", a);
+		//form.AddField ("recipe", );
+		
+		WWW www = new WWW(currentRecipeURL);
+		yield return www;
+		if(!string.IsNullOrEmpty(www.error)) 
+		{
+			Debug.Log(www.error);
+			Debug.Log(www.text);	
+		}
+		var recipeRunNode = JSON.Parse(www.text);
+		string currentRunningRecipe = recipeRunNode["recipe"];
+
+		form.AddField ("recipe", currentRunningRecipe);
 
 		object[] parms = new object[2] { currentRecipeURL, form };
 
@@ -190,6 +202,8 @@ public class ChooseRecipeModule : MonoBehaviour, IReactivatable, ISelectionRecei
 		
 		object[] parms = new object[2] { recipeRunURL, form };
 
+		
+		
 		yield return DataManager.dataManager.StartCoroutine("PostRequest", parms);
 		/*
 		WWW post = new WWW (recipeRunURL, form);

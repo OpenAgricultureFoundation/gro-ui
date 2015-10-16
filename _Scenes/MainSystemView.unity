@@ -1263,6 +1263,7 @@ MonoBehaviour:
   ipAddress: 
   initialLoad: 0
   stayLoggedIn: 0
+  isGuest: 0
   platform: 0
   baseURL: 
   GUISkin1: {fileID: 11400000, guid: c057b31b042ea4149817ecf455fdcd22, type: 2}
@@ -4076,7 +4077,6 @@ MonoBehaviour:
   - {fileID: 1922718435}
   collapseButton: {fileID: 1070474088}
   collapseArrow: {fileID: 1005817977}
-  isGuest: 0
 --- !u!1 &1140782403
 GameObject:
   m_ObjectHideFlags: 0
