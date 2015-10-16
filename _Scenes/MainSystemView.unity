@@ -145,7 +145,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .713235259, g: .713235259, b: .713235259, a: 1}
     m_PressedColor: {r: .602941155, g: .602941155, b: .602941155, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0, a: .370999992}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .370999992}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
@@ -1197,7 +1197,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 400, y: 70}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &298860044
 MonoBehaviour:
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -3238,7 +3238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .240592554, g: .367647052, b: .299300492, a: 1}
+  m_Color: {r: .248648375, g: .463235319, b: .365561277, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4076,6 +4076,7 @@ MonoBehaviour:
   - {fileID: 1922718435}
   collapseButton: {fileID: 1070474088}
   collapseArrow: {fileID: 1005817977}
+  isGuest: 0
 --- !u!1 &1140782403
 GameObject:
   m_ObjectHideFlags: 0

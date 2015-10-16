@@ -109,8 +109,8 @@ public class LoginManager : MonoBehaviour {
 		WWWForm form = new WWWForm();
 		form.AddField("username", user);
 		form.AddField("password", pass);
-		string loginURL = DataManager.dataManager.ipAddress + loginSuffix;
-		WWW login = new WWW(loginURL, form);
+		
+		WWW login = new WWW(DataManager.dataManager.ipAddress + loginSuffix, form);
 		yield return login;
 		loadingPanel.SetActive(false);
 		if(!string.IsNullOrEmpty(login.error))
@@ -134,7 +134,16 @@ public class LoginManager : MonoBehaviour {
 		// Else return to login screen and notify bad of login
 		yield return null;
 	}
-	
+
+	public IEnumerator LoginGuest()
+		//Login as Guest. 
+	{
+		SuccessfulLogin();
+		//Set Login bool in action buttons as guest. 
+
+		yield return null;
+	}
+
 	private IEnumerator ValidateToken(string token)
 	{
 		yield return null;
