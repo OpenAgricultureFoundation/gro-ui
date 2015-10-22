@@ -45,6 +45,9 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 			www = new WWW(point["property"].Value);
 			yield return www;
 			point["property"] = JSON.Parse(www.text);
+			www = new WWW(point["property"]["resource_type"]);
+			yield return www;
+			point["property"]["resource_type"] = JSON.Parse(www.text);
 			CreateSensingPointChoice(point);
 		}
 		
@@ -64,7 +67,10 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 		SensingPointChoice script = choice.GetComponent<SensingPointChoice>();
 		script.selectionReceiver = this;
 		script.node = sensingPoint;
-		script.SetName(sensingPoint["property"]["name"].Value);
+		string name = sensingPoint["property"]["name"].Value
+			+ " - "
+			+ sensingPoint["property"]["resource_type"]["name"];
+		script.SetName(name);
 		
 	}
 	
@@ -177,7 +183,7 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 								+ "?min_time=" + startTimeStamp.ToString()
 								+ "&max_time=" + endTimeStamp.ToString()
 								+ "&sensing_point=" + spID
-								+ "&limit=1000";
+								+ "&limit=200";
 		
 		WWW www = new WWW(firstURL);
 		yield return www;
