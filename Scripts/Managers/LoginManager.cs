@@ -28,12 +28,15 @@ public class LoginManager : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(0.5f);
 		}
+		
 		StartCoroutine("GetIP");
 		yield return null;
 	}
 
 	public IEnumerator GetIP()
 	{
+		
+		loadingPanel.SetActive(false);
 		// attempt to validate IP
 		if(!string.IsNullOrEmpty (DataManager.dataManager.ipAddress))
 		{
@@ -63,7 +66,6 @@ public class LoginManager : MonoBehaviour {
 	{
 		StopCoroutine("GetIP");
 		DataManager.dataManager.ipAddress = ip;
-		DataManager.dataManager.baseURL = ip;
 		DataManager.dataManager.StartCoroutine("Save");
 		ipEnterPanel.SetActive (false);
 		loadingPanel.SetActive (false);
@@ -73,8 +75,29 @@ public class LoginManager : MonoBehaviour {
 	
 	public IEnumerator ValidateIP(string ip)
 	{
+		
+		loadingPanel.SetActive(true);
 		WWW www = new WWW(ip);
-		yield return www;
+		float timer = 0f;
+		float timeout = 5.0f;
+		bool failed = false;
+		
+		while(!www.isDone) 
+		{
+			if(timer >= timeout)
+			{
+				failed = true;
+				break;
+			}
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		if(failed) 
+		{
+			DataManager.dataManager.ipAddress = "";
+			StartCoroutine("GetIP");
+			yield break;
+		}
 		if(!string.IsNullOrEmpty(www.error))
 		{
 			// Not a valid IP address at all

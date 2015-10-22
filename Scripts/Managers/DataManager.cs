@@ -20,7 +20,6 @@ public class DataManager : MonoBehaviour {
 
 	// Session stored variables
 	public RuntimePlatform platform = Application.platform;
-	public string baseURL;
 	public Dictionary<string, JSONNode> databaseMirror = new Dictionary<string, JSONNode> ();
 	public GUISkin GUISkin1;
 
@@ -43,14 +42,7 @@ public class DataManager : MonoBehaviour {
 	{
 		yield return StartCoroutine("Load");
 		initialLoad = true;
-		if (!string.IsNullOrEmpty (token)) 
-		{
-			// try to "login"
-		} 
-		else 
-		{
-			// Start login module
-		}
+		
 
 
 		yield return null;
@@ -80,6 +72,7 @@ public class DataManager : MonoBehaviour {
 
 	public IEnumerator Load()
 	{
+		
 		if (File.Exists (Application.persistentDataPath + saveFileName)) 
 		{
 			BinaryFormatter bf = new BinaryFormatter();
@@ -92,7 +85,6 @@ public class DataManager : MonoBehaviour {
 			token = data.token;
 			stayLoggedIn = data.stayLoggedIn;
 		}
-
 		yield return null;
 	}
 
