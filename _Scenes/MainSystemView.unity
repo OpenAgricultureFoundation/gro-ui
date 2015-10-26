@@ -6449,6 +6449,16 @@ MonoBehaviour:
     plantModel: {fileID: 131136, guid: a5c39cb3fa69c496290180476cb2f4e7, type: 2}
   - plantType: defaultPlant
     plantModel: {fileID: 118106, guid: b5fa24be3337d449487ace028f104231, type: 2}
+  - plantType: Lettuce
+    plantModel: {fileID: 182670, guid: 819e45add14014a2abe7b5c23750d956, type: 2}
+  - plantType: Arugula
+    plantModel: {fileID: 148906, guid: 3bb378fd8c23a4449b5e8e4d3bb188e8, type: 2}
+  - plantType: Butter Crunch Lettuce
+    plantModel: {fileID: 182670, guid: 5e39e3b3973f9422a971bcbf1d7869a3, type: 2}
+  - plantType: Red Velvet Lettuce
+    plantModel: {fileID: 120548, guid: d55a937c9131543ceb6d7ade5617f166, type: 2}
+  - plantType: Strawberries
+    plantModel: {fileID: 129102, guid: 4403df8f658b74a1e9bd640484ad7eec, type: 2}
   defaultPlantModel: {fileID: 118106, guid: b5fa24be3337d449487ace028f104231, type: 2}
   activeObject: {fileID: 0}
 --- !u!1 &1675185939

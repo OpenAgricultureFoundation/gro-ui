@@ -555,7 +555,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 26, y: 0}
-  m_SizeDelta: {x: 124, y: -6}
+  m_SizeDelta: {x: 110, y: -6}
   m_Pivot: {x: 0, y: .5}
 --- !u!224 &22468518
 RectTransform:
@@ -658,6 +658,10 @@ Prefab:
       propertyPath: latinNameDisplay
       value: 
       objectReference: {fileID: 11427656}
+    - target: {fileID: 0}
+      propertyPath: m_SizeDelta.x
+      value: 110
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 174630}

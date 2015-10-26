@@ -2587,7 +2587,6 @@ MonoBehaviour:
   stayLoggedIn: 0
   isGuest: 0
   platform: 0
-  baseURL: 
   GUISkin1: {fileID: 0}
 --- !u!4 &1581781012
 Transform:

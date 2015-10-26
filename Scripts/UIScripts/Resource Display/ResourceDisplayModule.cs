@@ -109,7 +109,7 @@ public class ResourceDisplayModule : MonoBehaviour {
 
 		GameObject module = Instantiate (sensingPointModulePrefab) as GameObject;
 		// Set parent to GUICanvas item
-		module.transform.SetParent (sensorListContent);
+		module.transform.SetParent (sensorListContent, false);
 
 		// Call get values
 		sensingPoints.Add (point);
