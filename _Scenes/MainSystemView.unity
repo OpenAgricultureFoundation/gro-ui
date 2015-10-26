@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1265,7 +1265,6 @@ MonoBehaviour:
   stayLoggedIn: 0
   isGuest: 0
   platform: 0
-  baseURL: 
   GUISkin1: {fileID: 11400000, guid: c057b31b042ea4149817ecf455fdcd22, type: 2}
 --- !u!4 &333538147
 Transform:
@@ -3239,7 +3238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .248648375, g: .463235319, b: .365561277, a: 1}
+  m_Color: {r: .11602509, g: .272058845, b: .194580019, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4413,8 +4412,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: .0107050166, g: .0661764741, b: .0386320241, a: 1}
-    m_HighlightedColor: {r: 1, g: .147058845, b: .147058845, a: 1}
-    m_PressedColor: {r: 1, g: .147058845, b: .147058845, a: 1}
+    m_HighlightedColor: {r: .786764741, g: .347102106, b: .347102106, a: 1}
+    m_PressedColor: {r: .786764741, g: .347102106, b: .347102106, a: 1}
     m_DisabledColor: {r: .42705974, g: .463235319, b: .42576775, a: .772000015}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
@@ -7524,7 +7523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .648788929, g: .882352948, b: .77604109, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0

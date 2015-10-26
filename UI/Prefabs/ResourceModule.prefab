@@ -245,6 +245,16 @@ MonoBehaviour:
   locationDisplay: {fileID: 11443856}
   iconDisplayButton: {fileID: 11492102}
   icon: {fileID: 11465770}
+  tempcolorblock:
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
+  tempcolor:
+    serializedVersion: 2
+    rgba: 0
   sensorListContent: {fileID: 22434736}
   sensorListOutter: {fileID: 22461112}
   layoutElement: {fileID: 11400984}

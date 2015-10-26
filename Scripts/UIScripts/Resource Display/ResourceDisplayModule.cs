@@ -10,8 +10,19 @@ public class ResourceDisplayModule : MonoBehaviour {
 	public Text nameDisplay, locationDisplay;
 	public Button iconDisplayButton;
 	public Image icon;
+	public ColorBlock tempcolorblock; // added to modify struct. 
+	public ColorBlock tempcolorblockExpanded;// so button stays highlighted on click. 
+	public Color32 tempcolor; // added to modify value type
 	public Transform sensorListContent, sensorListOutter;
 	public LayoutElement layoutElement;
+
+
+	public Color32 lightNormal = new Color32(201,216,113,255);
+	public Color32 lightHighlighted =new Color32(247,255,103,255);
+	public Color32 waterNormal = new Color32(64,120,186,255);
+	public Color32 waterHighlighted =new Color32 (116,182,238,255);
+	public Color32 airNormal = new Color32(129,146,156,255);
+	public Color32 airHighlighted = new Color32 (185,209,223,255);
 
 	[HideInInspector] public SensorDisplayManager sensorDisplayManager;
 	[HideInInspector] public FarmResource resource;
@@ -23,6 +34,45 @@ public class ResourceDisplayModule : MonoBehaviour {
 	private float baseHeight = 80.0f;
 	private List<SensingPointModule> sensingPointModules = new List<SensingPointModule> ();
 
+
+	void Start(){
+		if (nameDisplay.text == "Light"){
+			print ("passed light");
+			gameObject.GetComponent<Image>().color = new Color32(141,141, 88,255);
+			tempcolorblock = iconDisplayButton.colors;
+			tempcolorblock.normalColor = lightNormal;
+			tempcolorblock.highlightedColor=lightHighlighted;
+			tempcolorblock.pressedColor= lightHighlighted;
+			tempcolorblockExpanded = tempcolorblock;
+			tempcolorblockExpanded.normalColor=lightHighlighted;
+			print("accessed light icon");
+		}
+		if (nameDisplay.text == "Water"){
+			print ("passed water");
+			gameObject.GetComponent<Image>().color = new Color32(53,88, 128,255);
+			tempcolorblock=iconDisplayButton.colors;
+			tempcolorblock.normalColor= waterNormal;
+			tempcolorblock.highlightedColor = waterHighlighted;
+			tempcolorblock.pressedColor= waterHighlighted;
+			tempcolorblockExpanded = tempcolorblock;
+
+			tempcolorblockExpanded.normalColor=waterHighlighted;
+			print("accessed water icon");
+
+		}
+		if (nameDisplay.text == "Air"){
+			print ("passed air");
+			gameObject.GetComponent<Image>().color = new Color32(68,83, 92,255);
+			tempcolorblock=iconDisplayButton.colors;
+			tempcolorblock.normalColor=airNormal;
+			tempcolorblock.highlightedColor = airHighlighted;
+			tempcolorblock.pressedColor= airHighlighted;
+			tempcolorblockExpanded = tempcolorblock;
+			tempcolorblockExpanded.normalColor=airHighlighted;
+			print("accessed air icon");
+		}
+		iconDisplayButton.colors = tempcolorblockExpanded; // if switching to minimized UI, use tempcolorblock. 
+	}
 	public IEnumerator Initialize(FarmResource re)
 	{
 
@@ -116,6 +166,13 @@ public class ResourceDisplayModule : MonoBehaviour {
 	{
 		expanded = !expanded;
 
+		if (expanded) {
+			iconDisplayButton.colors = tempcolorblockExpanded;
+		}
+
+		else{
+			iconDisplayButton.colors=tempcolorblock;
+		}
 		sensorListOutter.gameObject.SetActive (expanded);
 		nameDisplay.gameObject.SetActive (expanded);
 		locationDisplay.gameObject.SetActive (expanded);
