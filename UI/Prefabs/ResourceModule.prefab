@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 24
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .777999997}
+  m_Color: {r: .11602509, g: .272058845, b: .194580019, a: 1}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -357,9 +357,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: .786764741, g: .786764741, b: .786764741, a: 1}
-    m_PressedColor: {r: .691176474, g: .691176474, b: .691176474, a: 1}
+    m_NormalColor: {r: .347102106, g: .786764741, b: .568449497, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: .753000021, a: 1}
+    m_PressedColor: {r: 0, g: 1, b: .753000021, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .397000015}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .416000009}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -565,7 +565,7 @@ RectTransform:
   m_GameObject: {fileID: 170378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.84570956, y: 2.84570956, z: 2.84570956}
   m_Children:
   - {fileID: 22417168}
   - {fileID: 22429846}
@@ -607,15 +607,15 @@ Prefab:
       objectReference: {fileID: 22461112}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_NormalColor.r
-      value: 1
+      value: .648788929
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_NormalColor.g
-      value: 1
+      value: .882352948
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_NormalColor.b
-      value: 1
+      value: .77604109
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Navigation.m_Mode
@@ -631,19 +631,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.r
-      value: .786764741
+      value: .220588207
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.g
-      value: .786764741
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_HighlightedColor.b
-      value: .786764741
+      value: .612981737
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_PressedColor.r
-      value: .691176474
+      value: .220588207
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_PressedColor.g
@@ -651,7 +651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_PressedColor.b
-      value: .691176474
+      value: .612981737
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_DisabledColor.a
@@ -672,6 +672,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_MinHeight
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
