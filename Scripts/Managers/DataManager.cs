@@ -43,9 +43,6 @@ public class DataManager : MonoBehaviour {
 	{
 		yield return StartCoroutine("Load");
 		initialLoad = true;
-		
-
-
 		yield return null;
 	}
 
@@ -97,13 +94,12 @@ public class DataManager : MonoBehaviour {
 		{
 			Debug.Log (www.error);
 			Debug.Log (www.text);
+			string genericQueryErrorMessage = "Something went wrong with your request. Please try again. If problem persists, restart application";
+			DisplayError(genericQueryErrorMessage);
 			yield break;
 		}
 		JSONNode node = JSON.Parse (www.text);
 		databaseMirror.Add (url, node);
-
-		//print ("Done Query");
-		//print (databaseMirror [url]);
 		yield return null;
 	}
 
@@ -118,20 +114,16 @@ public class DataManager : MonoBehaviour {
 			yield break;
 		}
 		JSONNode node = JSON.Parse (www.text);
-
 		JSONArray nodeList = node [accessor].AsArray;
-
 		foreach (JSONNode item in nodeList) 
 		{
 			databaseMirror.Add (item["url"], item);
 		}
-
 		yield return null;
 	}
 
 	public IEnumerator PostRequest(object[] parms)
 	{
-		
 		string URL = (string) parms[0];
 		byte[] rawData = new byte[1]{1};
 		Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -146,16 +138,15 @@ public class DataManager : MonoBehaviour {
 			rawData = (byte[]) parms[1];
 			headers = (Dictionary<string, string>) parms[2];
 		}
-		
 		headers.Add("Authorization", token);
-		//headers["Content-Type"] = "application/json";
-		
 		WWW www = new WWW(URL, rawData, headers);
 		yield return www;
 		if(!string.IsNullOrEmpty(www.error))
 		{
 			Debug.Log (www.error);
 			Debug.Log (www.text);
+			string genericPostRequestErrorMessage = "Could not complete request action. Check that your information is correct and try again.";
+			DisplayError(genericPostRequestErrorMessage);
 		}
 		
 		yield return null;
@@ -175,6 +166,8 @@ public class DataManager : MonoBehaviour {
 		{
 			Debug.Log (www.error);
 			Debug.Log (www.text);
+			string genericDeleteRequestErrorMessage = "Could not delete requested item. If problem persists, restart application and try again. Note: Some items cannot be deleted.";
+			DisplayError(genericDeleteRequestErrorMessage);
 		}
 
 		yield return null;
@@ -195,6 +188,8 @@ public class DataManager : MonoBehaviour {
 		{
 			Debug.Log (www.error);
 			Debug.Log (www.text);
+			string genericPutRequestErrorMessage = "Could not update item. Check that all required information is correct and try again. If problem persists, restrat application and try again.";
+			DisplayError(genericPutRequestErrorMessage);
 		}
 		yield return null;
 	}
@@ -209,7 +204,6 @@ public class DataManager : MonoBehaviour {
 	
 	public static int DateTimeNow(){
 		int now = (int)(System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1))).TotalSeconds - 1;
-		
 		return now;
 	}
 
@@ -220,7 +214,6 @@ public class DataManager : MonoBehaviour {
 		ErrorMessageController script = errorBox.GetComponent<ErrorMessageController>();
 		// Set message
 		script.SetErrorMessage(message);
-		// Pause Game?
 	}
 }
 

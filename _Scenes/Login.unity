@@ -2588,6 +2588,7 @@ MonoBehaviour:
   isGuest: 0
   platform: 0
   GUISkin1: {fileID: 0}
+  errorMessagePrefab: {fileID: 127276, guid: 51b42ac1f5a224161bdb89fe44b04aab, type: 2}
 --- !u!4 &1581781012
 Transform:
   m_ObjectHideFlags: 0
@@ -3052,7 +3053,7 @@ GameObject:
   - 114: {fileID: 1855357858}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: GUICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
