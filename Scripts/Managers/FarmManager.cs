@@ -27,6 +27,12 @@ public class FarmManager : MonoBehaviour {
 	public GameObject AdjustSystemModulePrefab;
 	public GameObject DownloadDataModulePrefab; 
 
+	// bool to keep track of when panels are expanded. 
+	public bool HarvestExpanded=false;
+	public bool AddPlantExpanded=false;
+	public bool AdjustExpanded=false;
+	public bool DownloadExpanded=false;
+
 	public List<PlantModelMapEntry> plantModelMap;
 	public GameObject defaultPlantModel;
 
@@ -143,49 +149,108 @@ public class FarmManager : MonoBehaviour {
 
 	public void StartAddPlantModule()
 	{
-		// Instantiate module
-		GameObject module = Instantiate (AddPlantModulePrefab) as GameObject;
-		AddPlantModule script = module.GetComponent<AddPlantModule> ();
+		if (AddPlantExpanded == false) {
+			// Instantiate module
+			GameObject module = Instantiate (AddPlantModulePrefab) as GameObject;
+			AddPlantModule script = module.GetComponent<AddPlantModule> ();
 
-		module.transform.SetParent (GameObject.FindGameObjectWithTag("GUICanvas").transform, false);
+			//shiftin prefab to adding to addplat button
+			module.transform.SetParent (GameObject.FindGameObjectWithTag ("AddPlantPanel").transform, false);
+			module.transform.SetAsFirstSibling ();
 
-		// Set active object
-		script.activeObject = activeObject.GetComponent<FarmObject> ();
-		// Set AddPlantButton
-		script.AddPlantButton = AddPlantButton;
-		// Set BaseURL
-		script.baseURL = GameObject.FindGameObjectWithTag ("GameController").GetComponent<MainSystemViewManager> ().BaseURL;
-		// Call initializer
-		script.StartCoroutine ("Initialize");
+			//GameObject.FindWithTag ("HarvestPanel").GetComponent<RectTransform>().
+			//GameObject.FindWithTag ("AdjustPanel").SetActive (false);
+			//GameObject.FindWithTag ("DownloadPanel").SetActive (false);
+
+			// Set active object
+			script.activeObject = activeObject.GetComponent<FarmObject> ();
+			// Set AddPlantButton
+			script.AddPlantButton = AddPlantButton;
+			// Set BaseURL
+			script.baseURL = GameObject.FindGameObjectWithTag ("GameController").GetComponent<MainSystemViewManager> ().BaseURL;
+			// Call initializer
+			script.StartCoroutine ("Initialize");
+			AddPlantExpanded = true;
+			return;
+		}
+		if (AddPlantExpanded = true) {
+			GameObject.FindWithTag("AddPlantModule").GetComponent<AddPlantModule>().DoneButtonPress();
+			AddPlantExpanded = false;
+			return;
+		}
 	}
 
 	public void StartHarvestModule()
 	{
-		// Instantiate prefab
-		GameObject module = Instantiate (HarvestModulePrefab) as GameObject;
-		HarvestPlantModule script = module.GetComponent<HarvestPlantModule> ();
-		module.transform.SetParent (GameObject.FindGameObjectWithTag("GUICanvas").transform, false);
 
-		script.activeObject = activeObject.GetComponent<FarmObject>();
-		script.harvestButton = HarvestButton;
-		script.StartCoroutine ("Initialize");
+		if (HarvestExpanded == false) {
+			// Instantiate prefab
+			GameObject module = Instantiate (HarvestModulePrefab) as GameObject;
+			HarvestPlantModule script = module.GetComponent<HarvestPlantModule> ();
+
+			//shifting harvest to new parent 
+			module.transform.SetParent (GameObject.FindGameObjectWithTag ("HarvestPanel").transform, false);
+			module.transform.SetAsFirstSibling ();
+
+			script.activeObject = activeObject.GetComponent<FarmObject> ();
+			script.harvestButton = HarvestButton;
+			script.StartCoroutine ("Initialize");
+			HarvestExpanded = true;
+			return;
+		}
+		if (HarvestExpanded == true) {
+			GameObject.FindWithTag("HarvestPlantModule").GetComponent<HarvestPlantModule>().CancelButtonPress();
+			HarvestExpanded = false;
+			return;
+		}
 	}
 
 	public void StartAdjustModule()
 	{
-		GameObject module = Instantiate (AdjustSystemModulePrefab) as GameObject;
-		module.transform.SetParent (GameObject.FindGameObjectWithTag ("GUICanvas").transform, false);
-		AdjustSystemModule script = module.GetComponent<AdjustSystemModule> ();
-		script.activeFarmObject = activeObject.GetComponent<FarmObject> ();
-		script.StartCoroutine ("Initialize");
+
+		if (AdjustExpanded == false) {
+			GameObject module = Instantiate (AdjustSystemModulePrefab) as GameObject;
+
+			//shiftig adjust to new parent
+
+			module.transform.SetParent (GameObject.FindGameObjectWithTag ("AdjustPanel").transform, false);
+			module.transform.SetAsFirstSibling ();
+
+			AdjustSystemModule script = module.GetComponent<AdjustSystemModule> ();
+			script.activeFarmObject = activeObject.GetComponent<FarmObject> ();
+			script.StartCoroutine ("Initialize");
+			AdjustExpanded = true;
+			return;
+		}
+		if (AdjustExpanded = true) {
+			GameObject.FindWithTag("AdjustSystemModule").GetComponent<AdjustSystemModule>().CloseButtonPress();
+			AdjustExpanded = false;
+			return;
+		}
 	}
 	
 	public void StartDownloadDataModule()
 	{
-		GameObject module = Instantiate(DownloadDataModulePrefab) as GameObject;
-		module.transform.SetParent (GameObject.FindGameObjectWithTag ("GUICanvas").transform, false);
-		DownloadDataModule script = module.GetComponent<DownloadDataModule>();
-		script.StartCoroutine("Initialize");
+		if (DownloadExpanded == false) {
+
+			GameObject module = Instantiate (DownloadDataModulePrefab) as GameObject;
+
+			//shifting to new parent
+			module.transform.SetParent (GameObject.FindGameObjectWithTag ("DownloadPanel").transform, false);
+			module.transform.SetAsFirstSibling ();
+
+			DownloadDataModule script = module.GetComponent<DownloadDataModule> ();
+			script.StartCoroutine ("Initialize");
+			DownloadExpanded = true;
+			return;
+		}
+
+		if (DownloadExpanded = true){
+			GameObject.FindWithTag("DownloadDataModule").GetComponent<DownloadDataModule>().CloseButtonPress();
+			DownloadExpanded=false;
+			return;
+		}
+
 	}
 
 	public GameObject GetPlantModel(string plantType)

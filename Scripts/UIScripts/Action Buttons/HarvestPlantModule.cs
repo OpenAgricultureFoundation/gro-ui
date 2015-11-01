@@ -77,6 +77,7 @@ public class HarvestPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite> {
 	public void ConfirmButtonPress()
 	{
 		StartCoroutine ("CompleteHarvest");
+		GameObject.FindWithTag ("FarmManager").GetComponent<FarmManager> ().HarvestExpanded = false;
 	}
 
 	public void CancelButtonPress()

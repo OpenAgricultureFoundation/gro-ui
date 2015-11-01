@@ -50,7 +50,7 @@ GameObject:
   - 114: {fileID: 11467916}
   m_Layer: 5
   m_Name: AdjustSystemModule
-  m_TagString: Untagged
+  m_TagString: AdjustSystemModule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &172100
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,8 +828,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: -10, y: 50}
+  m_AnchoredPosition: {x: -35, y: -40}
+  m_SizeDelta: {x: -80, y: 50}
   m_Pivot: {x: .5, y: 1}
 --- !u!224 &22413426
 RectTransform:
@@ -863,8 +863,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -5}
-  m_SizeDelta: {x: -5, y: 30}
+  m_AnchoredPosition: {x: -40, y: -5}
+  m_SizeDelta: {x: -90, y: 30}
   m_Pivot: {x: .5, y: 1}
 --- !u!224 &22449736
 RectTransform:
@@ -969,7 +969,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
   m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: 120, y: 25}
+  m_SizeDelta: {x: 70, y: 25}
   m_Pivot: {x: 1, y: .5}
 --- !u!224 &22490902
 RectTransform:
@@ -1004,11 +1004,11 @@ RectTransform:
   - {fileID: 22458276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: 1}
-  m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 5, y: 5}
   m_SizeDelta: {x: 400, y: 300}
-  m_Pivot: {x: .5, y: 1}
+  m_Pivot: {x: 1, y: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1020,6 +1020,34 @@ Prefab:
       propertyPath: chooseRecipeModulePrefab
       value: 
       objectReference: {fileID: 191142, guid: 8a40beaa73f3b4c359ae1f810b50b362, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchoredPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchoredPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: AdjustSystemModule
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120688}

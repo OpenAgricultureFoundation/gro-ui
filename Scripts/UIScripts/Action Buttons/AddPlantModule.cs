@@ -173,6 +173,9 @@ public class AddPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite>, ISele
 
 	public void DoneButtonPress()
 	{
+		//GameObject.FindWithTag ("HarvestPanel").SetActive (true);
+		//GameObject.FindWithTag ("AdjustPanel").SetActive (true);
+		//GameObject.FindWithTag ("DownloadPanel").SetActive (true);		
 		EndModule ();
 	}
 

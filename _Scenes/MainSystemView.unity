@@ -509,11 +509,11 @@ RectTransform:
   - {fileID: 2104755786}
   m_Father: {fileID: 43535594}
   m_RootOrder: 1
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: 0}
-  m_SizeDelta: {x: 250, y: -20}
-  m_Pivot: {x: 1, y: .5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 0}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &135941290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,7 +1116,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 85
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1138,7 +1138,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 288657165}
   m_LocalRotation: {x: -2.12654196e-08, y: .991444886, z: -.130526215, w: -1.61526884e-07}
-  m_LocalPosition: {x: 0, y: 1.79999995, z: 3.5}
+  m_LocalPosition: {x: .349999994, y: 2.1500001, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1167,8 +1167,8 @@ MonoBehaviour:
   yMaxAngle: 85
   xMinAngle: 90
   xMaxAngle: 270
-  distanceMin: 1
-  distanceMax: 20
+  distanceMin: 20
+  distanceMax: 40
   distanceScale: 4
   locked: 0
   x: 0
@@ -1364,7 +1364,7 @@ GameObject:
   - 114: {fileID: 350804368}
   m_Layer: 5
   m_Name: DownloadData
-  m_TagString: Untagged
+  m_TagString: DownloadPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1400,12 +1400,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 90
-  m_MinHeight: 115
+  m_MinWidth: -1
+  m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: -1
+  m_PreferredHeight: 100
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 1
 --- !u!114 &350804366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,7 +1705,7 @@ GameObject:
   - 114: {fileID: 476604573}
   m_Layer: 5
   m_Name: HarvestPanel
-  m_TagString: Untagged
+  m_TagString: HarvestPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,12 +1741,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 90
-  m_MinHeight: 115
+  m_MinWidth: -1
+  m_MinHeight: 100
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 1
 --- !u!114 &476604571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2026,9 +2026,9 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 17
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -3864,7 +3864,7 @@ GameObject:
   - 114: {fileID: 1054930636}
   m_Layer: 5
   m_Name: AddPlantPanel
-  m_TagString: Untagged
+  m_TagString: AddPlantPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3887,7 +3887,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1054930633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,12 +3900,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 90
-  m_MinHeight: 115
+  m_MinWidth: -1
+  m_MinHeight: 100
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 1
 --- !u!114 &1054930634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4072,9 +4072,9 @@ GameObject:
   - 224: {fileID: 1135993727}
   - 222: {fileID: 1135993731}
   - 114: {fileID: 1135993730}
-  - 114: {fileID: 1135993729}
   - 114: {fileID: 1135993728}
   - 114: {fileID: 1135993732}
+  - 114: {fileID: 1135993729}
   m_Layer: 5
   m_Name: ToolBar
   m_TagString: Untagged
@@ -4098,24 +4098,24 @@ RectTransform:
   - {fileID: 350804364}
   m_Father: {fileID: 43535594}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -45, y: 10}
-  m_SizeDelta: {x: -310, y: 100}
-  m_Pivot: {x: .5, y: 0}
+  m_AnchorMin: {x: 1, y: .5}
+  m_AnchorMax: {x: 1, y: .5}
+  m_AnchoredPosition: {x: 0, y: 11}
+  m_SizeDelta: {x: 75, y: 0}
+  m_Pivot: {x: 1, y: .5}
 --- !u!114 &1135993728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1135993726}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &1135993729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4124,18 +4124,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1135993726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 70
-    m_Right: 0
-    m_Top: -10
+    m_Left: 0
+    m_Right: 4
+    m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 30
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
+  m_ChildAlignment: 3
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
 --- !u!114 &1135993730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4148,7 +4148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4323,11 +4323,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2003504443}
   m_RootOrder: 0
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &1176275119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4357,7 +4357,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 2
+  m_ChildAlignment: 0
   m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
@@ -4482,11 +4482,11 @@ RectTransform:
   - {fileID: 168517692}
   m_Father: {fileID: 43535594}
   m_RootOrder: 4
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
   m_SizeDelta: {x: 85, y: 40}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1199055326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4517,9 +4517,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: .698529422, g: .364673436, b: .364673436, a: 1}
-    m_HighlightedColor: {r: .926470578, g: .538170397, b: .538170397, a: 1}
-    m_PressedColor: {r: .786764741, g: .347102106, b: .347102106, a: 1}
+    m_NormalColor: {r: .176794961, g: .20457159, b: .220588207, a: 1}
+    m_HighlightedColor: {r: .0107050166, g: .0661764741, b: .0386320241, a: 1}
+    m_PressedColor: {r: .0107050166, g: .0661764741, b: .0386320241, a: 1}
     m_DisabledColor: {r: .42705974, g: .463235319, b: .42576775, a: .772000015}
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
@@ -4765,7 +4765,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -5918,7 +5918,7 @@ GameObject:
   - 114: {fileID: 1485133773}
   m_Layer: 5
   m_Name: AdjustPanel
-  m_TagString: Untagged
+  m_TagString: AdjustPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5954,12 +5954,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 90
-  m_MinHeight: 115
+  m_MinWidth: -1
+  m_MinHeight: 100
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 1
 --- !u!114 &1485133771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6344,11 +6344,11 @@ RectTransform:
   - {fileID: 2003504443}
   m_Father: {fileID: 135941289}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: 0, y: -250}
-  m_Pivot: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 550}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &1591723387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6408,11 +6408,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 5
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 5
+  m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -6609,6 +6609,10 @@ MonoBehaviour:
     type: 2}
   DownloadDataModulePrefab: {fileID: 121558, guid: da6df4f4186804520936824ffede407f,
     type: 2}
+  HarvestExpanded: 0
+  AddPlantExpanded: 0
+  AdjustExpanded: 0
+  DownloadExpanded: 0
   plantModelMap:
   - plantType: empty
     plantModel: {fileID: 131136, guid: a5c39cb3fa69c496290180476cb2f4e7, type: 2}
@@ -6676,7 +6680,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -7057,7 +7061,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 17
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -7674,7 +7678,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: .5}
 --- !u!114 &2003504444
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -261,7 +261,7 @@ GameObject:
   - 114: {fileID: 11429370}
   m_Layer: 5
   m_Name: AddPlantModule
-  m_TagString: Untagged
+  m_TagString: AddPlantModule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1353,11 +1353,11 @@ RectTransform:
   - {fileID: 22421010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -58}
-  m_SizeDelta: {x: 315, y: 225}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 5, y: 5}
+  m_SizeDelta: {x: 315, y: 240}
+  m_Pivot: {x: 1, y: 1}
 --- !u!224 &22464664
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1408,8 +1408,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5, y: -40}
-  m_SizeDelta: {x: 225, y: -90}
+  m_AnchoredPosition: {x: 5, y: -47.5}
+  m_SizeDelta: {x: 225, y: -105}
   m_Pivot: {x: 0, y: .5}
 --- !u!224 &22487986
 RectTransform:
@@ -1427,8 +1427,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: -10, y: 75}
+  m_AnchoredPosition: {x: -40, y: -10}
+  m_SizeDelta: {x: -90, y: 75}
   m_Pivot: {x: .5, y: 1}
 --- !u!224 &22491534
 RectTransform:
@@ -1521,11 +1521,39 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AnchoredPosition.y
-      value: -58
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AnchoredPosition.x
-      value: 10
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SizeDelta.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SizeDelta.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: AddPlantModule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
