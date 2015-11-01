@@ -256,6 +256,10 @@ public class DownloadDataModule : MonoBehaviour, ISelectionReceiver<SensingPoint
 	public void EndModule() 
 	{
 		ActionButtonManager.actionButtonManager.ModuleEnd ();
+		FarmManager.farmManager.AddPlantPanel.SetActive (true);
+		FarmManager.farmManager.DownloadPanel.SetActive (true);
+		FarmManager.farmManager.AdjustPanel.SetActive (true);
+		FarmManager.farmManager.HarvestPanel.SetActive (true);
 		Destroy (transform.gameObject);
 	}
 	

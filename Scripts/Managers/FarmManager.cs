@@ -33,6 +33,13 @@ public class FarmManager : MonoBehaviour {
 	public bool AdjustExpanded=false;
 	public bool DownloadExpanded=false;
 
+	//Panels Objects for deactivating and reactivating on click
+
+	public GameObject AddPlantPanel;
+	public GameObject HarvestPanel;
+	public GameObject AdjustPanel;
+	public GameObject DownloadPanel;
+
 	public List<PlantModelMapEntry> plantModelMap;
 	public GameObject defaultPlantModel;
 
@@ -158,9 +165,9 @@ public class FarmManager : MonoBehaviour {
 			module.transform.SetParent (GameObject.FindGameObjectWithTag ("AddPlantPanel").transform, false);
 			module.transform.SetAsFirstSibling ();
 
-			//GameObject.FindWithTag ("HarvestPanel").GetComponent<RectTransform>().
-			//GameObject.FindWithTag ("AdjustPanel").SetActive (false);
-			//GameObject.FindWithTag ("DownloadPanel").SetActive (false);
+			HarvestPanel.SetActive(false);
+			AdjustPanel.SetActive (false);
+			DownloadPanel.SetActive(false);
 
 			// Set active object
 			script.activeObject = activeObject.GetComponent<FarmObject> ();
@@ -173,7 +180,7 @@ public class FarmManager : MonoBehaviour {
 			AddPlantExpanded = true;
 			return;
 		}
-		if (AddPlantExpanded = true) {
+		if (AddPlantExpanded == true) {
 			GameObject.FindWithTag("AddPlantModule").GetComponent<AddPlantModule>().DoneButtonPress();
 			AddPlantExpanded = false;
 			return;
@@ -196,11 +203,19 @@ public class FarmManager : MonoBehaviour {
 			script.harvestButton = HarvestButton;
 			script.StartCoroutine ("Initialize");
 			HarvestExpanded = true;
+
+			AddPlantPanel.SetActive(false);
+			AdjustPanel.SetActive (false);
+			DownloadPanel.SetActive(false);
 			return;
 		}
 		if (HarvestExpanded == true) {
 			GameObject.FindWithTag("HarvestPlantModule").GetComponent<HarvestPlantModule>().CancelButtonPress();
 			HarvestExpanded = false;
+
+			AddPlantPanel.SetActive(true);
+			AdjustPanel.SetActive (true);
+			DownloadPanel.SetActive(true);
 			return;
 		}
 	}
@@ -220,11 +235,18 @@ public class FarmManager : MonoBehaviour {
 			script.activeFarmObject = activeObject.GetComponent<FarmObject> ();
 			script.StartCoroutine ("Initialize");
 			AdjustExpanded = true;
+
+			AddPlantPanel.SetActive(false);
+			HarvestPanel.SetActive(false);
+			DownloadPanel.SetActive(false);
 			return;
 		}
-		if (AdjustExpanded = true) {
+		if (AdjustExpanded == true) {
 			GameObject.FindWithTag("AdjustSystemModule").GetComponent<AdjustSystemModule>().CloseButtonPress();
 			AdjustExpanded = false;
+			AddPlantPanel.SetActive(true);
+			HarvestPanel.SetActive(true);
+			DownloadPanel.SetActive(true);
 			return;
 		}
 	}
@@ -242,12 +264,20 @@ public class FarmManager : MonoBehaviour {
 			DownloadDataModule script = module.GetComponent<DownloadDataModule> ();
 			script.StartCoroutine ("Initialize");
 			DownloadExpanded = true;
+
+			AddPlantPanel.SetActive(false);
+			HarvestPanel.SetActive(false);
+			AdjustPanel.SetActive (false);
+
 			return;
 		}
 
-		if (DownloadExpanded = true){
+		if (DownloadExpanded == true){
 			GameObject.FindWithTag("DownloadDataModule").GetComponent<DownloadDataModule>().CloseButtonPress();
 			DownloadExpanded=false;
+			AddPlantPanel.SetActive(true);
+			HarvestPanel.SetActive(true);
+			AdjustPanel.SetActive (true);
 			return;
 		}
 

@@ -1296,6 +1296,7 @@ MonoBehaviour:
   isGuest: 0
   platform: 0
   GUISkin1: {fileID: 11400000, guid: c057b31b042ea4149817ecf455fdcd22, type: 2}
+  errorMessagePrefab: {fileID: 0}
 --- !u!4 &333538147
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,10 +1384,10 @@ RectTransform:
   - {fileID: 1675185940}
   m_Father: {fileID: 1135993727}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35.5, y: -380}
+  m_SizeDelta: {x: 71, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &350804365
 MonoBehaviour:
@@ -1724,10 +1725,10 @@ RectTransform:
   - {fileID: 489222767}
   m_Father: {fileID: 1135993727}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35.5, y: -160}
+  m_SizeDelta: {x: 71, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &476604570
 MonoBehaviour:
@@ -3883,10 +3884,10 @@ RectTransform:
   - {fileID: 1755134583}
   m_Father: {fileID: 1135993727}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 71, y: 0}
+  m_SizeDelta: {x: 71, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1054930633
 MonoBehaviour:
@@ -4100,7 +4101,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: 0, y: 11}
+  m_AnchoredPosition: {x: 0, y: 218}
   m_SizeDelta: {x: 75, y: 0}
   m_Pivot: {x: 1, y: .5}
 --- !u!114 &1135993728
@@ -4122,7 +4123,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1135993726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -5937,10 +5938,10 @@ RectTransform:
   - {fileID: 1288925964}
   m_Father: {fileID: 1135993727}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 35.5, y: -270}
+  m_SizeDelta: {x: 71, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1485133770
 MonoBehaviour:
@@ -6613,6 +6614,10 @@ MonoBehaviour:
   AddPlantExpanded: 0
   AdjustExpanded: 0
   DownloadExpanded: 0
+  AddPlantPanel: {fileID: 1054930631}
+  HarvestPanel: {fileID: 476604568}
+  AdjustPanel: {fileID: 1485133768}
+  DownloadPanel: {fileID: 350804363}
   plantModelMap:
   - plantType: empty
     plantModel: {fileID: 131136, guid: a5c39cb3fa69c496290180476cb2f4e7, type: 2}
@@ -7044,7 +7049,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -4, y: 30}
+  m_SizeDelta: {x: -6, y: 30}
   m_Pivot: {x: .5, y: 0}
 --- !u!114 &1755134584
 MonoBehaviour:
@@ -7063,7 +7068,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 17
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4

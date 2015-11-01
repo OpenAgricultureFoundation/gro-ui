@@ -133,6 +133,10 @@ public class HarvestPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite> {
 		EnablePlants (false);
 		//harvestButton.interactable = true;
 		ActionButtonManager.actionButtonManager.ModuleEnd ();
+		FarmManager.farmManager.AddPlantPanel.SetActive (true);
+		FarmManager.farmManager.DownloadPanel.SetActive (true);
+		FarmManager.farmManager.AdjustPanel.SetActive (true);
+		FarmManager.farmManager.HarvestPanel.SetActive (true);
 		Destroy (transform.gameObject);
 	}
 }

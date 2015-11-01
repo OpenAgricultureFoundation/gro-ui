@@ -79,6 +79,10 @@ public class AdjustSystemModule : MonoBehaviour, IReactivatable {
 	public void CloseButtonPress()
 	{
 		ActionButtonManager.actionButtonManager.ModuleEnd ();
+		FarmManager.farmManager.AddPlantPanel.SetActive (true);
+		FarmManager.farmManager.DownloadPanel.SetActive (true);
+		FarmManager.farmManager.AdjustPanel.SetActive (true);
+		FarmManager.farmManager.HarvestPanel.SetActive (true);
 		Destroy (transform.gameObject);
 	}
 

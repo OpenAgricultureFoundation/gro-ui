@@ -173,9 +173,7 @@ public class AddPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite>, ISele
 
 	public void DoneButtonPress()
 	{
-		//GameObject.FindWithTag ("HarvestPanel").SetActive (true);
-		//GameObject.FindWithTag ("AdjustPanel").SetActive (true);
-		//GameObject.FindWithTag ("DownloadPanel").SetActive (true);		
+
 		EndModule ();
 	}
 
@@ -245,6 +243,10 @@ public class AddPlantModule : MonoBehaviour, ISelectionReceiver<FarmSite>, ISele
 		//AddPlantButton.interactable = true;
 		CameraManager.cameraManager.ReturnToInterimRotation ();
 		ActionButtonManager.actionButtonManager.ModuleEnd ();
+		FarmManager.farmManager.AddPlantExpanded = false;
+		FarmManager.farmManager.DownloadPanel.SetActive (true);
+		FarmManager.farmManager.AdjustPanel.SetActive (true);
+		FarmManager.farmManager.HarvestPanel.SetActive (true);
 		Destroy (transform.gameObject);
 	}
 
