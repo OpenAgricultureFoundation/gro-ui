@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour {
 	public RuntimePlatform platform = Application.platform;
 	public Dictionary<string, JSONNode> databaseMirror = new Dictionary<string, JSONNode> ();
 	public GUISkin GUISkin1;
+	public GameObject errorMessagePrefab;
 
 	private const string saveFileName = "/Settings.dat";
 
@@ -198,16 +199,12 @@ public class DataManager : MonoBehaviour {
 		yield return null;
 	}
 	
-	
-
 	public void DataDownload(Dictionary<string, string> sensingPoints, int startTime, int endTime, string filePath)
 	{
 		List<List<string>> allData = new List<List<string>>();
 		for (int i = 0; i < sensingPoints.Count; i++)
 		{
-			
 		}
-		
 	}
 	
 	public static int DateTimeNow(){
@@ -216,6 +213,15 @@ public class DataManager : MonoBehaviour {
 		return now;
 	}
 
+	public void DisplayError(string message) {
+		// Create new error box
+		GameObject errorBox = Instantiate(errorMessagePrefab) as GameObject;
+		errorBox.transform.SetParent(GameObject.FindWithTag("GUICanvas").transform, false);
+		ErrorMessageController script = errorBox.GetComponent<ErrorMessageController>();
+		// Set message
+		script.SetErrorMessage(message);
+		// Pause Game?
+	}
 }
 
 [Serializable]

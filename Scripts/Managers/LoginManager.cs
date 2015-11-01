@@ -87,6 +87,8 @@ public class LoginManager : MonoBehaviour {
 			if(timer >= timeout)
 			{
 				failed = true;
+				string timeoutErrorMessage = "Timeout error. Could not connect to server. Please assure your IP address is correct and try again.";
+				DataManager.dataManager.DisplayError(timeoutErrorMessage);
 				break;
 			}
 			timer += Time.deltaTime;
@@ -140,7 +142,8 @@ public class LoginManager : MonoBehaviour {
 		{
 			Debug.Log (login.error);
 			Debug.Log (login.text);
-			
+			string loginErrorMessage = "Could not log in. Please check your username and password and try again.";
+			DataManager.dataManager.DisplayError(loginErrorMessage);
 			yield break;
 		}
 		
