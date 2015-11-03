@@ -147,7 +147,7 @@ public class ResourceDisplayModule : MonoBehaviour {
 		float newHeight, newWidth;
 		if (expanded) 
 		{
-			newWidth = iconDim + 120.0f + 10f;
+			newWidth = iconDim + 170.0f + 10f;
 			newHeight = iconDim + spContentHeight + 10.0f;
 		}
 		else

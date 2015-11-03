@@ -1137,7 +1137,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 288657165}
-  m_LocalRotation: {x: -2.12654196e-08, y: .991444886, z: -.130526215, w: -1.61526884e-07}
+  m_LocalRotation: {x: -2.82908861e-08, y: .984807789, z: -.173648223, w: -1.60445566e-07}
   m_LocalPosition: {x: .349999994, y: 2.1500001, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300000, guid: 1d9b65514c5824d77a68a0fd58fde34e, type: 3}
   smoothness: 11.1199999
   distanceSlider: {fileID: 1865147164}
-  distance: 6
+  distance: 4.75
   mouseSensitivity: 2
   cameraControlSensitivity: 2
   yMinAngle: 0
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   distanceScale: 4
   locked: 0
   x: 0
-  y: 0
+  y: 30
 --- !u!114 &288657172
 MonoBehaviour:
   m_ObjectHideFlags: 0

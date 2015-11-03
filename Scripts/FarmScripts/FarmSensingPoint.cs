@@ -7,7 +7,7 @@ public class FarmSensingPoint : MonoBehaviour {
 
 	[HideInInspector] public FarmResource resource;
 	[HideInInspector] public FarmSensor sensor;
-	[HideInInspector] public string url, property, urlDataPoint;
+	[HideInInspector] public string url, property, urlDataPoint, units;
 	public bool activePoint = true;
 
 	//public float refreshTime = 1.0f;
@@ -26,11 +26,11 @@ public class FarmSensingPoint : MonoBehaviour {
 		JSONNode propertyNode = JSON.Parse (www.text);
 		
 		property = propertyNode ["name"];
+		units = propertyNode ["units"];
 		//type = myResource.resourceType;
 		//sensorType = mySensor.sensorType;
 		urlDataPoint = url + "value/";
 		activePoint = node ["is_active"].AsBool;
-
 		yield return null;
 	}
 }

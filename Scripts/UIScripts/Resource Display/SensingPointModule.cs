@@ -8,7 +8,8 @@ public class SensingPointModule : MonoBehaviour {
 	[SerializeField] private static float _refreshTime = 4.20f;
 	private static int _thresholdForOldValues = 15*60;
 
-	public Text resourcePropertyDisplay, valueDisplay;
+	public Text resourcePropertyDisplay, valueDisplay, unitDisplay;
+	public GameObject reconnectButton;
 
 	[HideInInspector] public FarmSensingPoint sensingpoint;
 	[HideInInspector] public bool isLive = true;
@@ -18,6 +19,7 @@ public class SensingPointModule : MonoBehaviour {
 	public IEnumerator Initialize()
 	{
 		resourcePropertyDisplay.text = sensingpoint.property;
+		unitDisplay.text = sensingpoint.units;
 		urlDataPoint = sensingpoint.urlDataPoint;
 		StartCoroutine ("GetReadings");
 
@@ -43,8 +45,9 @@ public class SensingPointModule : MonoBehaviour {
 			{
 				Debug.Log (www.error);
 				Debug.Log (www.text);
-				SetSensorReadingValue("ERROR");
+				SetSensorReadingValue("");
 				isLive = false;
+				reconnectButton.SetActive(true);
 				//SetSensorReadingValue (dataPoint["value"].Value);
 			}
 			/*
@@ -67,5 +70,12 @@ public class SensingPointModule : MonoBehaviour {
 			yield return new WaitForSeconds(_refreshTime);
 		}
 		yield return null;
+	}
+	
+	public void Reconnect() 
+	{
+		StopCoroutine("GetReadings");
+		StartCoroutine("GetReadings");
+		reconnectButton.SetActive(false);
 	}
 }

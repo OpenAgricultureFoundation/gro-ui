@@ -28,7 +28,6 @@ public class LoginManager : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(0.5f);
 		}
-		
 		StartCoroutine("GetIP");
 		yield return null;
 	}
@@ -43,22 +42,17 @@ public class LoginManager : MonoBehaviour {
 			yield return StartCoroutine("ValidateIP", DataManager.dataManager.ipAddress);
 		}
 		// If valid, save IP in data manager, move to login
-
 		// Else, return to IP screen and notify of bad IP
 		else
 		{
 			ipEnterPanel.SetActive (true);
 		}
-		
 		yield return null;
 	}
 	
 	public IEnumerator GetCredentials()
 	{
-		if(DataManager.dataManager.stayLoggedIn)
-		{
-			
-		}	
+		if(DataManager.dataManager.stayLoggedIn){}	
 		yield return null;
 	}
 
@@ -114,6 +108,7 @@ public class LoginManager : MonoBehaviour {
 		var node = JSON.Parse(www.text);
 		if(node ["farm"] != null)
 		{
+			ipAddress = ip;
 			StartCoroutine("SuccessfulIP", ip);
 			yield break;
 		}
@@ -126,6 +121,12 @@ public class LoginManager : MonoBehaviour {
 
 	public IEnumerator LoginAttempt(object[] parms)
 	{
+		if(string.IsNullOrEmpty(ipAddress))
+		{
+			string noIPErrorMessage = "Error while loading IP address. Please re-enter the IP address of your food computer.";
+			DataManager.dataManager.DisplayError(noIPErrorMessage);
+			ChangeIP();
+		}
 		loadingPanel.SetActive(true);
 		string user = (string)parms [0];
 		string pass = (string)parms [1];
@@ -135,7 +136,7 @@ public class LoginManager : MonoBehaviour {
 		form.AddField("username", user);
 		form.AddField("password", pass);
 		
-		WWW login = new WWW(DataManager.dataManager.ipAddress + loginSuffix, form);
+		WWW login = new WWW(ipAddress + loginSuffix, form);
 		yield return login;
 		loadingPanel.SetActive(false);
 		if(!string.IsNullOrEmpty(login.error))
