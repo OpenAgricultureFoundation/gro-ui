@@ -2589,6 +2589,8 @@ MonoBehaviour:
   platform: 0
   GUISkin1: {fileID: 0}
   errorMessagePrefab: {fileID: 127276, guid: 51b42ac1f5a224161bdb89fe44b04aab, type: 2}
+  errorMessageWithStackPrefab: {fileID: 174524, guid: 5172cdaee0ea04f508557d31a43b8046,
+    type: 2}
 --- !u!4 &1581781012
 Transform:
   m_ObjectHideFlags: 0

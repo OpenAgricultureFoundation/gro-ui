@@ -511,8 +511,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 250, y: -60}
   m_Pivot: {x: 0, y: .5}
 --- !u!114 &135941290
 MonoBehaviour:
@@ -1296,7 +1296,9 @@ MonoBehaviour:
   isGuest: 0
   platform: 0
   GUISkin1: {fileID: 11400000, guid: c057b31b042ea4149817ecf455fdcd22, type: 2}
-  errorMessagePrefab: {fileID: 0}
+  errorMessagePrefab: {fileID: 127276, guid: 51b42ac1f5a224161bdb89fe44b04aab, type: 2}
+  errorMessageWithStackPrefab: {fileID: 174524, guid: 5172cdaee0ea04f508557d31a43b8046,
+    type: 2}
 --- !u!4 &333538147
 Transform:
   m_ObjectHideFlags: 0

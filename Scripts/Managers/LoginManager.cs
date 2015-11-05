@@ -11,7 +11,7 @@ public class LoginManager : MonoBehaviour {
 
 	private string ipAddress, username, password, token;
 	private int numLoginAttempts = 0;
-	private string loginSuffix = "/auth/login/";
+	//private const string loginSuffix = "/auth/login/";
 
 	void Awake()
 	{
@@ -69,7 +69,6 @@ public class LoginManager : MonoBehaviour {
 	
 	public IEnumerator ValidateIP(string ip)
 	{
-		
 		loadingPanel.SetActive(true);
 		WWW www = new WWW(ip);
 		float timer = 0f;
@@ -91,7 +90,7 @@ public class LoginManager : MonoBehaviour {
 		if(failed) 
 		{
 			DataManager.dataManager.ipAddress = "";
-			StartCoroutine("GetIP");
+			StartCoroutine("ChangeIP");
 			yield break;
 		}
 		if(!string.IsNullOrEmpty(www.error))
@@ -108,7 +107,7 @@ public class LoginManager : MonoBehaviour {
 		var node = JSON.Parse(www.text);
 		if(node ["farm"] != null)
 		{
-			ipAddress = ip;
+			ipAddress = ip.Replace(System.Environment.NewLine, "");
 			StartCoroutine("SuccessfulIP", ip);
 			yield break;
 		}
@@ -121,6 +120,7 @@ public class LoginManager : MonoBehaviour {
 
 	public IEnumerator LoginAttempt(object[] parms)
 	{
+		string loginSuffix = "/auth/login/";
 		if(string.IsNullOrEmpty(ipAddress))
 		{
 			string noIPErrorMessage = "Error while loading IP address. Please re-enter the IP address of your food computer.";
@@ -135,8 +135,9 @@ public class LoginManager : MonoBehaviour {
 		WWWForm form = new WWWForm();
 		form.AddField("username", user);
 		form.AddField("password", pass);
-		
-		WWW login = new WWW(ipAddress + loginSuffix, form);
+		string loginURL = string.Concat(ipAddress, loginSuffix).Replace(System.Environment.NewLine, "");
+		Debug.Log(loginURL);
+		WWW login = new WWW(loginURL, form);
 		yield return login;
 		loadingPanel.SetActive(false);
 		if(!string.IsNullOrEmpty(login.error))
@@ -144,7 +145,9 @@ public class LoginManager : MonoBehaviour {
 			Debug.Log (login.error);
 			Debug.Log (login.text);
 			string loginErrorMessage = "Could not log in. Please check your username and password and try again.";
-			DataManager.dataManager.DisplayError(loginErrorMessage);
+			DataManager.dataManager.DisplayErrorWithStack(loginErrorMessage, login.error + "\n" 
+																			+ "Post attempt to:\n" 
+																			+ loginURL);
 			yield break;
 		}
 		

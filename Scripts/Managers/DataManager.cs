@@ -22,7 +22,7 @@ public class DataManager : MonoBehaviour {
 	public RuntimePlatform platform = Application.platform;
 	public Dictionary<string, JSONNode> databaseMirror = new Dictionary<string, JSONNode> ();
 	public GUISkin GUISkin1;
-	public GameObject errorMessagePrefab;
+	public GameObject errorMessagePrefab, errorMessageWithStackPrefab;
 
 	private const string saveFileName = "/Settings.dat";
 
@@ -214,6 +214,18 @@ public class DataManager : MonoBehaviour {
 		ErrorMessageController script = errorBox.GetComponent<ErrorMessageController>();
 		// Set message
 		script.SetErrorMessage(message);
+	}
+	
+	public void DisplayErrorWithStack(string message, string stack)
+	{
+		// Create new error box
+		GameObject errorBox = Instantiate(errorMessageWithStackPrefab) as GameObject;
+		errorBox.transform.SetParent(GameObject.FindWithTag("GUICanvas").transform, false);
+		ErrorMessageController script = errorBox.GetComponent<ErrorMessageController>();
+		// Set message
+		script.SetErrorMessage(message);
+		// Set stack trace message
+		script.SetStackMessage(stack);
 	}
 }
 

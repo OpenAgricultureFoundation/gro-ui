@@ -39,6 +39,7 @@ public class EnterIP : MonoBehaviour {
 
 	public void AttemptButtonPress()
 	{
-		LoginManager.loginManager.StartCoroutine("ValidateIP", ipAddressInput.text);
+		string ipAddress = ipAddressInput.text.Replace(System.Environment.NewLine, "");
+		LoginManager.loginManager.StartCoroutine("ValidateIP", ipAddress);
 	}
 }
