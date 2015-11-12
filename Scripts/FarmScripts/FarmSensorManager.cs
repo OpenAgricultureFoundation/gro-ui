@@ -7,7 +7,7 @@ public class FarmSensorManager : MonoBehaviour {
 
 	public IEnumerator CreateSensor(object[] parms)//string URL, FarmResource resource)
 	{
-		string URL = (string)parms [0];
+		string URL = ((string)parms [0]).Replace(System.Environment.NewLine, "");
 		FarmResource resource = (FarmResource)parms [1];
 
 		GameObject sensor = Instantiate (sensorPrefab) as GameObject;

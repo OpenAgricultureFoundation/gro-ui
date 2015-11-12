@@ -41,7 +41,6 @@ public class FarmTray : MonoBehaviour {
 			script.myTray = this;
 			script.StartCoroutine ("Initialize", site.Value);
 			mySites.Add(script);
-
 		}
 	}
 

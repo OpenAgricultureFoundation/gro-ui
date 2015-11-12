@@ -49,20 +49,6 @@ public class FarmBuilder : MonoBehaviour {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// TODO: Finish Build
 	/**
 	 * Takes in a system 'node' and builds it
@@ -82,7 +68,7 @@ public class FarmBuilder : MonoBehaviour {
 		}
 
 		// Get URL
-		string url = node["url"];
+		string url = (node["url"].Value).Replace(System.Environment.NewLine, "");;
 		//string[] urlSplit = url.Split ("/" [0]);
 
 

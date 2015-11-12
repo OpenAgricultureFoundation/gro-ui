@@ -67,13 +67,13 @@ public class FarmSite : MonoBehaviour {
 		isEmpty = true;
 		if (node ["plant"].Value != "null") 
 		{
-			plantURL = node["plant"].Value;
+			plantURL = node["plant"].Value.Replace(System.Environment.NewLine, "");
 
 			www = new WWW(plantURL);
 			yield return www;
 			plantNode = JSON.Parse(www.text);
-			
-			www = new WWW(plantNode["plant_type"].Value);
+			string plantTypeURL = plantNode["plant_type"].Value.Replace(System.Environment.NewLine, "");
+			www = new WWW(plantTypeURL);
 			yield return www;
 			plantTypeNode = JSON.Parse (www.text);
 
@@ -106,13 +106,11 @@ public class FarmSite : MonoBehaviour {
 	public IEnumerator Initialize(string URL)
 	{
 		// Query URL, parse
-		WWW www = new WWW (URL);
+		url = URL.Replace(System.Environment.NewLine, "");
+		WWW www = new WWW (url);
 		yield return www;
 
 		node = JSON.Parse (www.text);
-
-		// Set object variables
-		url = URL;
 
 		row = node ["row"].AsInt;
 		col = node ["col"].AsInt;
@@ -129,20 +127,7 @@ public class FarmSite : MonoBehaviour {
 		transform.localScale = scale;
 		transform.SetParent (myTray.transform);
 		transform.localPosition = pos;
-		/*
-		if (node ["plant"].Value != "null") 
-		{
-			string url2 = node["plant"].Value;
-			www = new WWW(url2);
-			yield return www;
-			plantNode = JSON.Parse(www.text);
-
-			www = new WWW(plantNode["plant_type"].Value);
-			yield return www;
-			plantTypeNode = JSON.Parse (www.text);
-
-		}
-		*/
+		
 		yield return StartCoroutine ("LoadPlant");
 
 		yield return null;
@@ -161,18 +146,7 @@ public class FarmSite : MonoBehaviour {
 		{
 			isEmpty = false;
 			Vector3 lp, ls;
-			/*
-			PlantLibrary pLib = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlantLibrary>();
-
-			if(false)//pLib.PlantLibraryDict.ContainsKey(plantNode["plant_type"]["common_name"].Value))
-			{
-				siteObject = Instantiate(pLib.PlantLibraryDict[plantNode["plant_type"]["common_name"].Value]) as GameObject;
-				lp = new Vector3(0f, -1f, 0f);
-				ls = new Vector3(0.15f, 0.15f, 0.15f);
-			}
-
-
-			*/
+			
 			if(false){}
 			else
 			{
@@ -181,7 +155,7 @@ public class FarmSite : MonoBehaviour {
 				ls = new Vector3(1f, 1f, 0.03f);
 			}
 
-			plantURL = node["plant"];
+			plantURL = node["plant"].Value.Replace(System.Environment.NewLine, "");
 			plantName = plantTypeNode["common_name"].Value;
 			//siteObject = Instantiate(manager.testSitePrefab) as GameObject;
 			//siteObject = Instantiate(manager.testPlantLeaf) as GameObject;
@@ -213,39 +187,6 @@ public class FarmSite : MonoBehaviour {
 	}
 
 
-	
-	/*
-	public IEnumerator SetPlant()
-	{
-		WWW www;
-
-		if (node ["plant"].Value != "null") 
-		{
-			www = new WWW(node["plant"].Value);
-			yield return www;
-			plantNode = JSON.Parse(www.text);
-			
-			www = new WWW(plantNode["plant_type"].Value);
-			yield return www;
-			plantTypeNode = JSON.Parse (www.text);
-			
-			isEmpty = false;
-		}
-
-		if (false) 
-		{
-
-		} 
-		else 
-		{
-
-		}
-
-		yield return null;
-	}
-	*/
-
-
 	public IEnumerator UpdateSite()
 	{
 		Destroy (plant.gameObject);
@@ -253,23 +194,8 @@ public class FarmSite : MonoBehaviour {
 		yield return www;
 
 		node = JSON.Parse (www.text);
-
 		yield return StartCoroutine ("LoadPlant");
-		/*
-		if (node ["plant"].Value != "null") 
-		{
-			www = new WWW(node["plant"].Value);
-			yield return www;
-			plantNode = JSON.Parse (www.text);
-
-			www = new WWW(plantNode["plant_type"].Value);
-			yield return www;
-			plantTypeNode = JSON.Parse (www.text);
-		}
-
-		yield return StartCoroutine ("SetPlant");
-
-		*/
+		
 		yield return null;
 
 	}

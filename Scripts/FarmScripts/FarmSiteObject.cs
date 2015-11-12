@@ -23,15 +23,11 @@ public class FarmSiteObject : MonoBehaviour {
 
 	public void Start()
 	{
-		//
 		hoverColor = highlightColor;
 	}
 
 	public IEnumerator Initialize()
 	{
-		// Initialize anything needed
-
-
 		yield return null;
 	}
 

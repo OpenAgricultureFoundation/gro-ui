@@ -15,13 +15,12 @@ public class FarmSensor : MonoBehaviour {
 	public IEnumerator Initialize (string URL)
 	{
 		farmManager = GameObject.FindGameObjectWithTag ("FarmManager").GetComponent<FarmManager> ();
-
-		WWW www = new WWW (URL);
+		url = URL.Replace(System.Environment.NewLine, "");
+		WWW www = new WWW (url);
 		yield return www;
-		url = URL;
 		JSONClass node = (JSONClass)JSON.Parse (www.text);
 
-		string typeURL = node ["sensor_type"];
+		string typeURL = node ["sensor_type"].Value.Replace(System.Environment.NewLine, "");
 		www = new WWW (typeURL);
 		yield return www;
 		

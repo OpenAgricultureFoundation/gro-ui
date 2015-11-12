@@ -130,7 +130,7 @@ public class FarmObject: MonoBehaviour {
 			yield return DataManager.dataManager.StartCoroutine("SingleQuery", url);
 		}
 		node2 = DataManager.dataManager.databaseMirror[url];
-		myURL = url;
+		myURL = url.Replace(System.Environment.NewLine, "");;
 
 		// Setup
 		// Get node contents
@@ -167,7 +167,7 @@ public class FarmObject: MonoBehaviour {
 		// Load Tray / Children, and Resources
 		yield return StartCoroutine (LoadResources ());
 
-		if (isTray (url)) 
+		if (isTray (myURL)) 
 		{
 			isTrayObject = true;
 			yield return StartCoroutine(LoadTray ());
@@ -230,7 +230,7 @@ public class FarmObject: MonoBehaviour {
 	//OLD
 	public void Build (string URL)
 	{
-		StartCoroutine (Query (URL));
+		StartCoroutine (Query (URL.Replace(System.Environment.NewLine, "")));
 	}
 
 

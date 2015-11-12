@@ -10,7 +10,7 @@ public class FarmActuatorManager : MonoBehaviour {
 
 	public IEnumerator CreateActuator(object[] parms)//string URL, FarmResource resource)
 	{
-		string URL = (string)parms [0];
+		string URL = ((string)parms [0]).Replace(System.Environment.NewLine, "");;
 		FarmResource resource = (FarmResource)parms [1];
 		GameObject act = Instantiate (actuatorPrefab) as GameObject;
 		FarmActuator farmAct = act.GetComponent<FarmActuator> ();

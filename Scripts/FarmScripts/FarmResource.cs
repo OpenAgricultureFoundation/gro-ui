@@ -27,7 +27,7 @@ public class FarmResource : MonoBehaviour {
 		node = JSON.Parse (www.text);
 
 		transform.name = node["name"];
-		string typeURL = node ["resource_type"];
+		string typeURL = node ["resource_type"].Value.Replace(System.Environment.NewLine, "");
 		www = new WWW (typeURL);
 		yield return www;
 

@@ -34,7 +34,7 @@ public class FarmActuator : MonoBehaviour {
 
 	public IEnumerator GetCurrentState()
 	{
-		string stateURL = string.Concat (url, stateUrlSuffix);
+		string stateURL = string.Concat (url, stateUrlSuffix).Replace(System.Environment.NewLine, "");
 		WWW www = new WWW (stateURL);
 		yield return www;
 		stateNode = JSON.Parse (www.text);
