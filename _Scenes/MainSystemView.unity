@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: .26757136, g: .326382369, b: .360294104, a: 1}
   m_EffectDistance: {x: -1, y: 3}
   m_UseGraphicAlpha: 1
 --- !u!114 &67668286
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .992647052, g: .707990885, b: .707990885, a: 1}
+  m_Color: {r: .727022052, g: .820879698, b: .875, a: 1}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5000,7 +5000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .433823526, g: .0063797636, b: .0063797636, a: 1}
+  m_Color: {r: .209558815, g: .343762547, b: .5, a: 1}
   m_Sprite: {fileID: 21300000, guid: e84a7ba869db3df4e993a3076703a424, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -5026,7 +5026,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: .338235319, g: 0, b: 0, a: .246999994}
+  m_EffectColor: {r: .0110294148, g: .0882353187, b: .0498985909, a: 1}
   m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!1 &1208256653
@@ -7175,7 +7175,7 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: .26757136, g: .326382369, b: .360294104, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1667220516
@@ -7190,7 +7190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .0107050166, g: .0661764741, b: .0386320241, a: 1}
   m_Sprite: {fileID: 21300000, guid: e84a7ba869db3df4e993a3076703a424, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
