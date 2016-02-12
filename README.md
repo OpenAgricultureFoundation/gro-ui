@@ -21,7 +21,7 @@ Next, check out the [gro-ui](https://github.com/OpenAgInitiative/gro-ui.git) rep
     cd gro-ui-project
     git checkout https://github.com/OpenAgInitiative/gro-ui.git Assets
 
-Next, look for the ``gro-ui-project/Assets/ProjectSettings` directory. Copy this directory to the `gro-ui-project` directory.
+Next, look for the `gro-ui-project/Assets/ProjectSettings` directory. Copy this directory to the `gro-ui-project` directory.
 
 Your `gro-ui-project` directory should now look like this:
 
